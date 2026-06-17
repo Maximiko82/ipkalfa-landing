@@ -177,43 +177,136 @@
   }
   .section-desc { color: var(--muted); font-size: 17px; line-height: 1.7; max-width: 560px; }
 
-  /* PRODUCTS */
+  /* =====================
+     CATALOG / PRODUCTS
+  ===================== */
   .products { background: var(--surface); }
-  .products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 24px; }
-  .products-grid {
+  .products-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 60px; flex-wrap: wrap; gap: 24px;
+  }
+
+  /* Сетка категорий — 4 колонки */
+  .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 2px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
-  .product-card {
+
+  /* Карточка категории */
+  .category-card {
     background: var(--bg);
-    padding: 36px 32px;
-    border: 1px solid transparent;
-    transition: border-color .3s, transform .3s;
-    cursor: default;
-    position: relative;
+    border: 1px solid rgba(232,160,32,0.1);
+    border-radius: 12px;
     overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    cursor: pointer;
+    position: relative;
   }
-  .product-card::before {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  .category-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 40px rgba(232,160,32,0.15);
+  }
+
+  /* Фото категории */
+  .category-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    position: relative;
+    background: var(--surface2);
+  }
+  .category-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease;
+  }
+  .category-card:hover .category-img img {
+    transform: scale(1.05);
+  }
+  /* Заглушка если нет фото */
+  .category-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 40px;
+  }
+  .category-img-placeholder span.ph-label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(136,146,164,0.5);
+  }
+
+  /* Нижняя часть карточки */
+  .category-body {
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .category-body h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .category-body p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+  .category-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    transition: gap .2s;
+  }
+  .category-card:hover .category-link { gap: 10px; }
+  .category-link svg {
+    width: 14px; height: 14px;
+    transition: transform .2s;
+  }
+  .category-card:hover .category-link svg { transform: translateX(2px); }
+
+  /* Бейдж "Смотреть" при hover */
+  .category-hover-badge {
+    position: absolute;
+    top: 12px; right: 12px;
     background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .3s;
+    color: #0b0e14;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity .25s, transform .25s;
   }
-  .product-card:hover { border-color: var(--border); transform: translateY(-4px); }
-  .product-card:hover::before { transform: scaleX(1); }
-  .product-icon {
-    width: 48px; height: 48px;
-    background: rgba(232,160,32,0.1);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    margin-bottom: 24px;
+  .category-card:hover .category-hover-badge {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .product-card h3 { font-size: 18px; font-weight: 500; margin-bottom: 10px; }
-  .product-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
   /* ADVANTAGES */
   .advantages-inner {
@@ -402,11 +495,7 @@
     margin-top: 8px;
   }
   .form-submit:hover { background: var(--accent2); transform: translateY(-1px); }
-  .form-success {
-    display: none;
-    text-align: center;
-    padding: 32px;
-  }
+  .form-success { display: none; text-align: center; padding: 32px; }
   .form-success .success-icon { font-size: 48px; margin-bottom: 16px; }
   .form-success h4 { font-size: 20px; margin-bottom: 8px; }
   .form-success p { color: var(--muted); font-size: 14px; }
@@ -431,10 +520,7 @@
   }
   .contact-item h4 { font-size: 13px; color: var(--muted); margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
   .contact-item p, .contact-item a {
-    font-size: 16px;
-    color: var(--text);
-    text-decoration: none;
-    line-height: 1.5;
+    font-size: 16px; color: var(--text); text-decoration: none; line-height: 1.5;
   }
   .contact-item a:hover { color: var(--accent); }
   .contact-map {
@@ -443,10 +529,8 @@
     border-radius: 16px;
     height: 300px;
     display: flex; align-items: center; justify-content: center;
-    color: var(--muted);
-    font-size: 14px;
-    flex-direction: column;
-    gap: 12px;
+    color: var(--muted); font-size: 14px;
+    flex-direction: column; gap: 12px;
   }
   .contact-map span { font-size: 36px; }
 
@@ -466,45 +550,18 @@
   .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
   .footer-links a:hover { color: var(--accent); }
 
-  /* MODAL */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(6px);
-    align-items: center; justify-content: center;
-  }
-  .modal-overlay.active { display: flex; }
-  .modal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 48px;
-    max-width: 480px;
-    width: 90%;
-    position: relative;
-  }
-  .modal-close {
-    position: absolute; top: 20px; right: 20px;
-    background: none; border: none;
-    color: var(--muted); font-size: 22px; cursor: pointer;
-    line-height: 1;
-    transition: color .2s;
-  }
-  .modal-close:hover { color: var(--text); }
-
   /* SCROLL ANIMATION */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity .6s ease, transform .6s ease;
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* RESPONSIVE */
+  @media (max-width: 1200px) {
+    .catalog-grid { grid-template-columns: repeat(3, 1fr); }
+  }
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
     nav ul { display: none; }
@@ -514,6 +571,10 @@
     .forms-grid { grid-template-columns: 1fr; }
     .hero-stats { gap: 28px; }
     footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+    .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .catalog-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -549,7 +610,7 @@
         <div class="stat-label">лет на рынке</div>
       </div>
       <div>
-        <div class="stat-num">9</div>
+        <div class="stat-num">8</div>
         <div class="stat-label">категорий товаров</div>
       </div>
       <div>
@@ -560,56 +621,195 @@
   </div>
 </section>
 
-<!-- PRODUCTS -->
+<!-- PRODUCTS / CATALOG -->
 <section class="products" id="products">
   <div class="products-header reveal">
     <div>
       <div class="section-tag">Наша продукция</div>
       <h2>КАТАЛОГ ТОВАРОВ</h2>
     </div>
-    <p class="section-desc">Широкий ассортимент средств опломбирования для любых задач бизнеса</p>
+    <p class="section-desc">Нажмите на категорию чтобы посмотреть все товары и оформить заказ</p>
   </div>
-  <div class="products-grid">
-    <div class="product-card reveal">
-      <div class="product-icon">🔒</div>
-      <h3>Универсальные пломбы</h3>
-      <p>Пластиковые номерные пломбы разных конфигураций для опечатывания грузов и помещений</p>
-    </div>
-    <div class="product-card reveal">
-      <div class="product-icon">🏷️</div>
-      <h3>Пломбировочные наклейки</h3>
-      <p>Самоклеящиеся индикаторные наклейки с защитой от вскрытия и подделки</p>
-    </div>
-    <div class="product-card reveal">
-      <div class="product-icon">⚙️</div>
-      <h3>Пломбы для счётчиков</h3>
-      <p>Роторные пломбы для опломбирования газовых, водяных и электрических счётчиков</p>
-    </div>
-    <div class="product-card reveal">
-      <div class="product-icon">🔗</div>
-      <h3>Пломбировочная лента</h3>
-      <p>Защитные ленты с индикатором вскрытия для опломбирования дверей и упаковок</p>
-    </div>
-    <div class="product-card reveal">
-      <div class="product-icon">🛡️</div>
-      <h3>Сейф и курьер-пакеты</h3>
-      <p>Защитные пакеты для безопасной транспортировки ценностей и документов</p>
-    </div>
-    <div class="product-card reveal">
-      <div class="product-icon">🔧</div>
-      <h3>Пломбираторы</h3>
-      <p>Профессиональный инструмент для установки свинцовых и пластиковых пломб</p>
-    </div>
-    <div class="product-card reveal">
-      <div class="product-icon">⛓️</div>
-      <h3>Силовые пломбы (ЗПУ)</h3>
-      <p>Запорно-пломбировочные устройства для контейнеров и вагонов</p>
-    </div>
-    <div class="product-card reveal">
-      <div class="product-icon">📦</div>
-      <h3>Пломбы-защёлки</h3>
-      <p>Одноразовые пластиковые пломбы-защёлки для быстрого и надёжного опломбирования</p>
-    </div>
+
+  <div class="catalog-grid">
+
+    <!-- 1. Универсальные пломбы -->
+    <a href="category-universal.html" class="category-card reveal">
+      <div class="category-hover-badge">Смотреть</div>
+      <div class="category-img">
+        <!-- ЗАМЕНИТЕ src на путь к вашему фото: например img/universal.jpg -->
+        <img src="img/universal.jpg" alt="Универсальные пломбы"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="category-img-placeholder" style="display:none;">
+          🔒<span class="ph-label">Фото категории</span>
+        </div>
+      </div>
+      <div class="category-body">
+        <h3>Универсальные пломбы</h3>
+        <p>Пластиковые номерные пломбы разных конфигураций для опечатывания грузов и помещений</p>
+        <span class="category-link">
+          Смотреть товары
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- 2. Пломбировочные наклейки -->
+    <a href="category-nakleyki.html" class="category-card reveal">
+      <div class="category-hover-badge">Смотреть</div>
+      <div class="category-img">
+        <img src="img/nakleyki.jpg" alt="Пломбировочные наклейки"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="category-img-placeholder" style="display:none;">
+          🏷️<span class="ph-label">Фото категории</span>
+        </div>
+      </div>
+      <div class="category-body">
+        <h3>Пломбировочные наклейки</h3>
+        <p>Самоклеящиеся индикаторные наклейки с защитой от вскрытия и подделки</p>
+        <span class="category-link">
+          Смотреть товары
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- 3. Пломбы для счётчиков -->
+    <a href="category-schetchiki.html" class="category-card reveal">
+      <div class="category-hover-badge">Смотреть</div>
+      <div class="category-img">
+        <img src="img/schetchiki.jpg" alt="Пломбы для счётчиков"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="category-img-placeholder" style="display:none;">
+          ⚙️<span class="ph-label">Фото категории</span>
+        </div>
+      </div>
+      <div class="category-body">
+        <h3>Пломбы для счётчиков</h3>
+        <p>Роторные пломбы для опломбирования газовых, водяных и электрических счётчиков</p>
+        <span class="category-link">
+          Смотреть товары
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- 4. Пломбировочная лента -->
+    <a href="category-lenta.html" class="category-card reveal">
+      <div class="category-hover-badge">Смотреть</div>
+      <div class="category-img">
+        <img src="img/lenta.jpg" alt="Пломбировочная лента"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="category-img-placeholder" style="display:none;">
+          🔗<span class="ph-label">Фото категории</span>
+        </div>
+      </div>
+      <div class="category-body">
+        <h3>Пломбировочная лента</h3>
+        <p>Защитные ленты с индикатором вскрытия для опломбирования дверей и упаковок</p>
+        <span class="category-link">
+          Смотреть товары
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- 5. Сейф и курьер-пакеты -->
+    <a href="category-pakety.html" class="category-card reveal">
+      <div class="category-hover-badge">Смотреть</div>
+      <div class="category-img">
+        <img src="img/pakety.jpg" alt="Сейф и курьер-пакеты"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="category-img-placeholder" style="display:none;">
+          🛡️<span class="ph-label">Фото категории</span>
+        </div>
+      </div>
+      <div class="category-body">
+        <h3>Сейф и курьер-пакеты</h3>
+        <p>Защитные пакеты для безопасной транспортировки ценностей и документов</p>
+        <span class="category-link">
+          Смотреть товары
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- 6. Пломбираторы -->
+    <a href="category-plombiratory.html" class="category-card reveal">
+      <div class="category-hover-badge">Смотреть</div>
+      <div class="category-img">
+        <img src="img/plombiratory.jpg" alt="Пломбираторы"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="category-img-placeholder" style="display:none;">
+          🔧<span class="ph-label">Фото категории</span>
+        </div>
+      </div>
+      <div class="category-body">
+        <h3>Пломбираторы</h3>
+        <p>Профессиональный инструмент для установки свинцовых и пластиковых пломб</p>
+        <span class="category-link">
+          Смотреть товары
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- 7. Силовые пломбы (ЗПУ) -->
+    <a href="category-zpu.html" class="category-card reveal">
+      <div class="category-hover-badge">Смотреть</div>
+      <div class="category-img">
+        <img src="img/zpu.jpg" alt="Силовые пломбы ЗПУ"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="category-img-placeholder" style="display:none;">
+          ⛓️<span class="ph-label">Фото категории</span>
+        </div>
+      </div>
+      <div class="category-body">
+        <h3>Силовые пломбы (ЗПУ)</h3>
+        <p>Запорно-пломбировочные устройства для контейнеров и вагонов</p>
+        <span class="category-link">
+          Смотреть товары
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- 8. Пломбы-защёлки -->
+    <a href="category-zashchelki.html" class="category-card reveal">
+      <div class="category-hover-badge">Смотреть</div>
+      <div class="category-img">
+        <img src="img/zashchelki.jpg" alt="Пломбы-защёлки"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="category-img-placeholder" style="display:none;">
+          📦<span class="ph-label">Фото категории</span>
+        </div>
+      </div>
+      <div class="category-body">
+        <h3>Пломбы-защёлки</h3>
+        <p>Одноразовые пластиковые пломбы-защёлки для быстрого и надёжного опломбирования</p>
+        <span class="category-link">
+          Смотреть товары
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -704,8 +904,6 @@
     <p class="section-desc">Наши специалисты свяжутся с вами в течение рабочего дня и помогут подобрать оптимальное решение</p>
   </div>
   <div class="forms-grid">
-
-    <!-- ЗАЯВКА -->
     <div class="form-card reveal">
       <h3>ЗАЯВКА НА ЗАКАЗ</h3>
       <p>Опишите что нужно и мы рассчитаем стоимость</p>
@@ -745,8 +943,6 @@
         <p>Мы свяжемся с вами в ближайшее рабочее время</p>
       </div>
     </div>
-
-    <!-- ОБРАТНЫЙ ЗВОНОК -->
     <div class="form-card reveal">
       <h3>ОБРАТНЫЙ ЗВОНОК</h3>
       <p>Оставьте номер — перезвоним в удобное время</p>
@@ -781,7 +977,6 @@
         <p>Перезвоним вам в указанное время</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -842,7 +1037,6 @@
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -854,15 +1048,11 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 
-  // Form submit
   function submitForm(type) {
-    const form = document.getElementById(type + '-form');
-    const success = document.getElementById(type + '-success');
-    form.style.display = 'none';
-    success.style.display = 'block';
+    document.getElementById(type + '-form').style.display = 'none';
+    document.getElementById(type + '-success').style.display = 'block';
   }
 
-  // Phone mask
   document.querySelectorAll('input[type="tel"]').forEach(input => {
     input.addEventListener('input', function() {
       let v = this.value.replace(/\D/g, '');
