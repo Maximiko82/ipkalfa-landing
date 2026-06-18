@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Пломба УП-165 — ИПК АЛЬФА</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geologica:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0e14;
+    --surface: #13171f;
+    --surface2: #1a2030;
+    --accent: #e8a020;
+    --accent2: #f5c842;
+    --text: #f0f2f7;
+    --muted: #8892a4;
+    --border: rgba(232,160,32,0.2);
+    --border2: rgba(240,242,247,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Geologica', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(11,14,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--accent); text-decoration: none; }
+  .logo span { color: var(--text); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; }
+  nav ul a:hover { color: var(--accent); }
+  .nav-cta { background: var(--accent); color: #0b0e14 !important; padding: 10px 24px; border-radius: 4px; font-weight: 700 !important; }
+  .nav-cta:hover { background: var(--accent2) !important; }
+
+  /* BREADCRUMB */
+  .breadcrumb-bar {
+    margin-top: 80px;
+    padding: 16px 60px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border2);
+  }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; transition: color .2s; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .breadcrumb span { color: var(--accent); }
+
+  /* PRODUCT MAIN */
+  .product-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    padding: 60px 60px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* GALLERY */
+  .gallery-wrap { position: sticky; top: 100px; }
+  .gallery-main-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    position: relative;
+    cursor: zoom-in;
+  }
+  .gallery-main-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+    transition: transform .3s ease;
+  }
+  .gallery-main-img:hover img { transform: scale(1.03); }
+  .zoom-hint {
+    position: absolute; bottom: 12px; right: 12px;
+    background: rgba(11,14,20,0.7);
+    color: var(--muted); font-size: 11px; letter-spacing: 1px;
+    padding: 4px 10px; border-radius: 4px;
+    pointer-events: none;
+  }
+  .gallery-thumbs {
+    display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;
+  }
+  .gallery-thumb {
+    width: 72px; height: 72px;
+    border-radius: 8px; overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer; transition: border-color .2s;
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+  .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery-thumb.active { border-color: var(--accent); }
+  .gallery-thumb:hover { border-color: rgba(232,160,32,0.5); }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 300;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(8px);
+    align-items: center; justify-content: center;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90vw; max-height: 90vh;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 0 80px rgba(0,0,0,0.8);
+  }
+  .lightbox-close {
+    position: absolute; top: 24px; right: 24px;
+    background: rgba(255,255,255,0.1); border: none;
+    color: var(--text); font-size: 24px; cursor: pointer;
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .lightbox-close:hover { background: var(--accent); color: #0b0e14; }
+  .lightbox-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.1); border: none;
+    color: var(--text); font-size: 20px; cursor: pointer;
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .lightbox-arrow:hover { background: var(--accent); color: #0b0e14; }
+  .lightbox-arrow.prev { left: 24px; }
+  .lightbox-arrow.next { right: 24px; }
+
+  /* PRODUCT INFO */
+  .product-info {}
+  .product-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(232,160,32,0.12); border: 1px solid var(--border);
+    border-radius: 100px; padding: 4px 12px;
+    font-size: 11px; color: var(--accent); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .product-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .product-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 2px; line-height: 1;
+    margin-bottom: 12px;
+  }
+  .product-subtitle { font-size: 15px; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
+  .product-rating { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+  .stars { color: var(--accent); font-size: 18px; letter-spacing: 2px; }
+  .rating-text { font-size: 13px; color: var(--muted); }
+
+  /* ЦЕНА */
+  .price-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .price-main { font-size: 36px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+  .price-old { font-size: 18px; color: var(--muted); text-decoration: line-through; }
+  .price-unit { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .price-tiers { margin-top: 16px; border-top: 1px solid var(--border2); padding-top: 16px; }
+  .price-tiers-title { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .price-tier { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border2); font-size: 14px; }
+  .price-tier:last-child { border-bottom: none; }
+  .price-tier .qty { color: var(--muted); }
+  .price-tier .price { color: var(--accent); font-weight: 500; }
+
+  /* ЦВЕТА */
+  .colors-block { margin-bottom: 24px; }
+  .colors-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .color-dots { display: flex; gap: 10px; flex-wrap: wrap; }
+  .color-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer; transition: border-color .2s, transform .2s;
+    position: relative;
+  }
+  .color-dot:hover { transform: scale(1.15); }
+  .color-dot.active { border-color: var(--accent); }
+  .color-dot[title]::after {
+    content: attr(title);
+    position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; color: var(--muted); white-space: nowrap;
+    opacity: 0; transition: opacity .2s;
+  }
+  .color-dot:hover::after { opacity: 1; }
+
+  /* КНОПКИ */
+  .product-actions { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .btn-order {
+    background: var(--accent); color: #0b0e14;
+    border: none; padding: 18px 32px;
+    font-family: 'Geologica', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: 1px;
+    cursor: pointer; border-radius: 8px;
+    transition: background .2s, transform .1s;
+    text-transform: uppercase;
+  }
+  .btn-order:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-call {
+    background: transparent; color: var(--text);
+    border: 1px solid rgba(240,242,247,0.2);
+    padding: 16px 32px;
+    font-family: 'Geologica', sans-serif;
+    font-size: 15px; letter-spacing: 1px;
+    cursor: pointer; border-radius: 8px;
+    transition: border-color .2s, color .2s;
+    text-decoration: none; display: block; text-align: center;
+  }
+  .btn-call:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ОСОБЕННОСТИ */
+  .product-features { display: flex; flex-direction: column; gap: 10px; }
+  .feature-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); }
+  .feature-item::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+  /* СЕКЦИИ */
+  .product-sections { max-width: 1400px; margin: 0 auto; padding: 0 60px 80px; }
+
+  .section-tabs {
+    display: flex; gap: 4px;
+    border-bottom: 1px solid var(--border2);
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: none; border: none; color: var(--muted);
+    font-family: 'Geologica', sans-serif;
+    font-size: 14px; letter-spacing: 1px;
+    padding: 14px 24px; cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color .2s, border-color .2s;
+    text-transform: uppercase;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ХАРАКТЕРИСТИКИ */
+  .specs-table { width: 100%; border-collapse: collapse; }
+  .specs-table tr { border-bottom: 1px solid var(--border2); }
+  .specs-table tr:last-child { border-bottom: none; }
+  .specs-table td { padding: 14px 16px; font-size: 15px; }
+  .specs-table td:first-child { color: var(--muted); width: 40%; }
+  .specs-table td:last-child { color: var(--text); font-weight: 400; }
+  .specs-table tr:nth-child(odd) td { background: rgba(255,255,255,0.02); }
+
+  /* ОПИСАНИЕ */
+  .desc-content h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 2px;
+    margin: 32px 0 16px; color: var(--text);
+  }
+  .desc-content h3:first-child { margin-top: 0; }
+  .desc-content p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+  .desc-content ul { margin: 0 0 16px 20px; display: flex; flex-direction: column; gap: 8px; }
+  .desc-content ul li { font-size: 15px; color: var(--muted); line-height: 1.6; }
+  .desc-content ul li::marker { color: var(--accent); }
+  .adv-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+  .adv-table th { background: var(--surface); padding: 12px 16px; text-align: left; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); border-bottom: 2px solid var(--border); }
+  .adv-table td { padding: 12px 16px; font-size: 14px; color: var(--muted); border-bottom: 1px solid var(--border2); }
+  .adv-table td:first-child { color: var(--text); font-weight: 500; }
+
+  /* ИНСТРУКЦИЯ */
+  .instruction-steps { display: flex; flex-direction: column; gap: 24px; }
+  .instruction-step { display: flex; gap: 20px; }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px; color: rgba(232,160,32,0.25);
+    line-height: 1; min-width: 48px; flex-shrink: 0;
+  }
+  .step-content h4 { font-size: 16px; font-weight: 500; margin-bottom: 8px; color: var(--text); }
+  .step-content p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .step-content ul { margin: 8px 0 0 16px; display: flex; flex-direction: column; gap: 6px; }
+  .step-content ul li { font-size: 14px; color: var(--muted); }
+  .step-content ul li::marker { color: var(--accent); }
+  .warning-box {
+    background: rgba(232,160,32,0.06);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 24px;
+    font-size: 14px; color: var(--muted); line-height: 1.7;
+  }
+  .warning-box strong { color: var(--accent); }
+  .instruction-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 2px;
+    margin: 40px 0 24px; color: var(--text);
+  }
+  .instruction-section-title:first-child { margin-top: 0; }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 12px; }
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .faq-item.open { border-color: var(--border); }
+  .faq-question {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 22px;
+    cursor: pointer;
+    font-size: 15px; font-weight: 400;
+    gap: 16px;
+  }
+  .faq-question:hover { color: var(--accent); }
+  .faq-icon {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: rgba(232,160,32,0.1);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: var(--accent); font-size: 16px;
+    transition: transform .3s, background .2s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--accent); color: #0b0e14; }
+  .faq-answer {
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s ease, padding .3s ease;
+    padding: 0 22px;
+  }
+  .faq-answer-inner { padding-bottom: 18px; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .faq-answer-inner table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+  .faq-answer-inner th { background: var(--surface2); padding: 10px 14px; text-align: left; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .faq-answer-inner td { padding: 10px 14px; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--border2); }
+  .faq-answer-inner td:first-child { font-weight: 500; color: var(--text); }
+  .faq-item.open .faq-answer { max-height: 600px; padding: 0 22px; }
+
+  /* ОТЗЫВЫ */
+  .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .reviews-list { display: flex; flex-direction: column; gap: 16px; }
+  .review-card {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .review-author { font-size: 15px; font-weight: 500; }
+  .review-date { font-size: 12px; color: var(--muted); }
+  .review-stars { color: var(--accent); font-size: 14px; margin-bottom: 10px; letter-spacing: 2px; }
+  .review-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* ФОРМА ОТЗЫВА */
+  .review-form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    position: sticky; top: 100px;
+  }
+  .review-form-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; letter-spacing: 2px; margin-bottom: 6px;
+  }
+  .review-form-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .star-rating { display: flex; gap: 6px; margin-bottom: 20px; }
+  .star-btn {
+    background: none; border: none; font-size: 26px; cursor: pointer;
+    color: rgba(232,160,32,0.2); transition: color .15s, transform .1s;
+    padding: 0;
+  }
+  .star-btn.active, .star-btn:hover { color: var(--accent); transform: scale(1.1); }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .form-group input, .form-group textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid rgba(240,242,247,0.1);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: 'Geologica', sans-serif;
+    font-size: 14px; outline: none;
+    transition: border-color .2s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    width: 100%;
+    background: var(--accent); color: #0b0e14;
+    border: none; padding: 14px;
+    font-family: 'Geologica', sans-serif;
+    font-weight: 700; font-size: 14px; letter-spacing: 1px;
+    text-transform: uppercase; cursor: pointer;
+    border-radius: 8px; transition: background .2s;
+  }
+  .form-submit:hover { background: var(--accent2); }
+  .form-success { display: none; text-align: center; padding: 20px 0; }
+  .form-success .si { font-size: 40px; margin-bottom: 12px; }
+  .form-success h4 { font-size: 18px; margin-bottom: 6px; }
+  .form-success p { color: var(--muted); font-size: 13px; }
+
+  /* ПОХОЖИЕ ТОВАРЫ */
+  .related { background: var(--surface); padding: 80px 60px; border-top: 1px solid var(--border2); }
+  .related h2 { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 2px; margin-bottom: 32px; }
+  .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .related-card {
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 10px; overflow: hidden;
+    text-decoration: none; color: var(--text);
+    transition: border-color .3s, transform .3s;
+    display: block;
+  }
+  .related-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .related-img { aspect-ratio: 1/1; overflow: hidden; background: var(--surface2); }
+  .related-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .related-body { padding: 14px 16px; }
+  .related-body h4 { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .related-body .price { font-size: 16px; color: var(--accent); font-weight: 600; }
+
+  /* CTA */
+  .product-cta { background: var(--bg); padding: 80px 60px; text-align: center; border-top: 1px solid var(--border2); }
+  .product-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4vw, 52px); letter-spacing: 2px; margin-bottom: 16px; }
+  .product-cta p { font-size: 16px; color: var(--muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: #0b0e14; border: none; padding: 16px 36px; font-family: 'Geologica', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; cursor: pointer; border-radius: 4px; transition: background .2s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid rgba(240,242,247,0.3); padding: 16px 36px; font-family: 'Geologica', sans-serif; font-size: 14px; cursor: pointer; border-radius: 4px; transition: border-color .2s, color .2s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); align-items: center; justify-content: center; }
+  .modal-overlay.active { display: flex; }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 48px; max-width: 480px; width: 90%; position: relative; }
+  .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; transition: color .2s; }
+  .modal-close:hover { color: var(--text); }
+  .modal h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; margin-bottom: 6px; }
+  .modal-sub { color: var(--accent); font-size: 14px; margin-bottom: 24px; }
+  .modal-success { display: none; text-align: center; padding: 20px 0; }
+  .modal-success .si { font-size: 48px; margin-bottom: 16px; }
+  .modal-success h4 { font-size: 20px; margin-bottom: 8px; }
+  .modal-success p { color: var(--muted); font-size: 14px; }
+
+  footer { background: var(--surface); border-top: 1px solid var(--border); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+  footer p { font-size: 13px; color: var(--muted); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 1100px) {
+    .product-main { grid-template-columns: 1fr; gap: 40px; padding: 40px 24px 60px; }
+    .gallery-wrap { position: static; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    nav ul { display: none; }
+    .breadcrumb-bar { padding: 14px 24px; }
+    .product-sections { padding: 0 24px 60px; }
+    .related { padding: 60px 24px; }
+    .product-cta { padding: 60px 24px; }
+    footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 560px) {
+    .related-grid { grid-template-columns: 1fr; }
+    .section-tabs { gap: 0; }
+    .tab-btn { padding: 12px 14px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">ИПК<span>АЛЬФА</span></a>
+  <ul>
+    <li><a href="index.html#products">Каталог</a></li>
+    <li><a href="index.html#advantages">О нас</a></li>
+    <li><a href="index.html#branding">Маркировка</a></li>
+    <li><a href="index.html#contacts">Контакты</a></li>
+    <li><a href="index.html#forms" class="nav-cta">Заказать</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb">
+    <a href="index.html">Главная</a>
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l6 5-6 5"/></svg>
+    <a href="index.html#products">Каталог</a>
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l6 5-6 5"/></svg>
+    <a href="category-universal.html">Универсальные пломбы</a>
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l6 5-6 5"/></svg>
+    <span>Пломба УП-165</span>
+  </div>
+</div>
+
+<!-- PRODUCT MAIN -->
+<div class="product-main">
+
+  <!-- ГАЛЕРЕЯ -->
+  <div class="gallery-wrap">
+    <div class="gallery-main-img" onclick="openLightbox(currentImg)">
+      <img id="main-img" src="img/up-165-1.webp" alt="Пломба УП-165">
+      <div class="zoom-hint">🔍 Увеличить</div>
+    </div>
+    <div class="gallery-thumbs">
+      <div class="gallery-thumb active" onclick="setImg(0)">
+        <img src="img/up-165-1.webp" alt="">
+      </div>
+      <div class="gallery-thumb" onclick="setImg(1)">
+        <img src="img/up-165-2.webp" alt="">
+      </div>
+      <div class="gallery-thumb" onclick="setImg(2)">
+        <img src="img/up-165-3.webp" alt="">
+      </div>
+      <div class="gallery-thumb" onclick="setImg(3)">
+        <img src="img/up-165-4.webp" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- ИНФО -->
+  <div class="product-info">
+    <div class="product-badge">Производство ИПК АЛЬФА</div>
+    <h1 class="product-title">ПЛОМБА УП-165</h1>
+    <p class="product-subtitle">Номерная пластиковая пломба собственной разработки. Нет аналогов на рынке. Полипропилен со спецдобавками, шестилепестковый замок, лазерная нумерация.</p>
+
+    <div class="product-rating">
+      <div class="stars">★★★★★</div>
+      <div class="rating-text">5.0 · 1 отзыв</div>
+    </div>
+
+    <!-- ЦЕНА -->
+    <div class="price-block">
+      <div class="price-main">4.15 руб.</div>
+      <div class="price-old">было 5.00 руб.</div>
+      <div class="price-unit">за 1 шт. при заказе от 1 000 шт.</div>
+      <div class="price-tiers">
+        <div class="price-tiers-title">Скидки при объёме</div>
+        <div class="price-tier">
+          <span class="qty">от 1 000 шт.</span>
+          <span class="price">4.15 руб./шт.</span>
+        </div>
+        <div class="price-tier">
+          <span class="qty">от 5 000 шт.</span>
+          <span class="price">3.65 руб./шт.</span>
+        </div>
+        <div class="price-tier">
+          <span class="qty">от 10 000 шт.</span>
+          <span class="price">3.35 руб./шт.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЦВЕТА -->
+    <div class="colors-block">
+      <div class="colors-label">Доступные цвета</div>
+      <div class="color-dots">
+        <div class="color-dot active" style="background:#e53935;" title="Красный"></div>
+        <div class="color-dot" style="background:#f0f2f7; border:2px solid rgba(240,242,247,0.3);" title="Белый"></div>
+        <div class="color-dot" style="background:#43a047;" title="Зелёный"></div>
+        <div class="color-dot" style="background:#1e88e5;" title="Синий"></div>
+        <div class="color-dot" style="background:#fdd835;" title="Жёлтый"></div>
+      </div>
+    </div>
+
+    <!-- КНОПКИ -->
+    <div class="product-actions">
+      <button class="btn-order" onclick="openModal()">Заказать / Запросить цену</button>
+      <a href="tel:+79154445070" class="btn-call">📞 +7 (915) 444-50-70</a>
+    </div>
+
+    <!-- ОСОБЕННОСТИ -->
+    <div class="product-features">
+      <div class="feature-item">Нет аналогов на рынке — эксклюзивная разработка ИПК АЛЬФА</div>
+      <div class="feature-item">Лазерная маркировка — номер не стирается</div>
+      <div class="feature-item">Нанесение логотипа и штрих-кода от 1 000 шт.</div>
+      <div class="feature-item">Работает при −40°C до +60°C</div>
+      <div class="feature-item">Установка вручную без инструментов</div>
+      <div class="feature-item">Гарантия 12 месяцев</div>
+    </div>
+  </div>
+</div>
+
+<!-- СЕКЦИИ (ТАБЫ) -->
+<div class="product-sections">
+  <div class="section-tabs">
+    <button class="tab-btn active" onclick="switchTab('specs', this)">Характеристики</button>
+    <button class="tab-btn" onclick="switchTab('desc', this)">Описание</button>
+    <button class="tab-btn" onclick="switchTab('install', this)">Установка / Снятие</button>
+    <button class="tab-btn" onclick="switchTab('faq', this)">FAQ</button>
+    <button class="tab-btn" onclick="switchTab('reviews', this)">Отзывы (1)</button>
+  </div>
+
+  <!-- ХАРАКТЕРИСТИКИ -->
+  <div class="tab-content active reveal" id="tab-specs">
+    <table class="specs-table">
+      <tr><td>Модель</td><td>УП-165</td></tr>
+      <tr><td>Общая длина</td><td>215 мм</td></tr>
+      <tr><td>Рабочая длина</td><td>135 мм</td></tr>
+      <tr><td>Сечение гибкого элемента</td><td>3,2 × 2,7 мм</td></tr>
+      <tr><td>Материал</td><td>Полипропилен со специальными добавками</td></tr>
+      <tr><td>Размер информационной площадки</td><td>20 × 32 мм</td></tr>
+      <tr><td>Цвета</td><td>Красный, белый, зелёный, синий, жёлтый</td></tr>
+      <tr><td>Маркировка</td><td>7-значная, лазерная</td></tr>
+      <tr><td>Логотип / штрих-код</td><td>От 1 000 шт.</td></tr>
+      <tr><td>Усилие на разрыв</td><td>40 кгс</td></tr>
+      <tr><td>Тип замка</td><td>Встроенный, шестилепестковый</td></tr>
+      <tr><td>Установка</td><td>Вручную, без инструментов</td></tr>
+      <tr><td>Температура использования</td><td>от −40°C до +60°C</td></tr>
+      <tr><td>Упаковка</td><td>1 000 шт.</td></tr>
+      <tr><td>Размер упаковки</td><td>300 × 240 × 200 мм</td></tr>
+      <tr><td>Вес упаковки</td><td>2 кг</td></tr>
+      <tr><td>Гарантийный срок</td><td>12 месяцев с даты поставки</td></tr>
+      <tr><td>Производитель</td><td>ООО «ИПК АЛЬФА», Россия</td></tr>
+      <tr><td>Артикул</td><td>1-1</td></tr>
+    </table>
+  </div>
+
+  <!-- ОПИСАНИЕ -->
+  <div class="tab-content reveal" id="tab-desc">
+    <div class="desc-content">
+      <h3>Номерная пломба УП-165 — уникальная разработка ИПК АЛЬФА</h3>
+      <p>Пломба УП-165 — собственный продукт компании ООО «ИПК АЛЬФА». На сегодняшний день на рынке нет аналогов этой пломбе, что делает её по-настоящему уникальным решением для надёжного опломбирования.</p>
+
+      <h3>Современная и надёжная</h3>
+      <p>При литье в состав добавляются специальные добавки, благодаря которым пломбы получают повышенную эластичность и расширенный температурный диапазон. Это особенно важно для российских климатических условий — пломба сохраняет свои свойства как в мороз, так и в жару.</p>
+
+      <h3>Стойкая лазерная маркировка</h3>
+      <p>Маркировка наносится лазером. Такая технология не позволяет номеру стираться во время эксплуатации, что гарантирует читаемость на протяжении всего срока службы. Каждая пломба имеет уникальный 7-значный номер — дублирование исключено.</p>
+
+      <h3>Индивидуальное нанесение информации</h3>
+      <p>Помимо номера, на пломбу УП-165 можно нанести:</p>
+      <ul>
+        <li>Название и логотип компании</li>
+        <li>Фирменный знак или торговую марку</li>
+        <li>Штрих-код или QR-код</li>
+        <li>Любую другую необходимую информацию</li>
+      </ul>
+
+      <h3>Преимущества перед конкурентами</h3>
+      <table class="adv-table">
+        <tr>
+          <th>Преимущество</th>
+          <th>Описание</th>
+        </tr>
+        <tr>
+          <td>Прямое производство</td>
+          <td>Покупая у производителя, вы исключаете наценки посредников</td>
+        </tr>
+        <tr>
+          <td>Уникальность</td>
+          <td>Пломба УП-165 не имеет аналогов — эксклюзивная разработка ИПК АЛЬФА</td>
+        </tr>
+        <tr>
+          <td>Морозостойкость</td>
+          <td>Работает при температурах от −40 до +60 °C</td>
+        </tr>
+        <tr>
+          <td>Индивидуализация</td>
+          <td>Нанесение логотипа, штрих-кода и любой информации заказчика</td>
+        </tr>
+        <tr>
+          <td>Опыт с 2003 года</td>
+          <td>Качество проверено временем — более 20 лет производства</td>
+        </tr>
+        <tr>
+          <td>Защита от подделки</td>
+          <td>Автоматизированный учёт нумерации, лазерная гравировка</td>
+        </tr>
+      </table>
+
+      <h3>Области применения</h3>
+      <ul>
+        <li>Двери (офисы, склады, торговые точки)</li>
+        <li>Фургоны и контейнеры</li>
+        <li>Распределительные щиты и электрощитки</li>
+        <li>Почтовые мешки и курьерские отправления</li>
+        <li>Инкассаторские сумки</li>
+        <li>Приборы учёта (счётчики воды, электричества, газа)</li>
+        <li>Ящики и шкафы с документацией</li>
+        <li>Оборудование и технические помещения</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- УСТАНОВКА / СНЯТИЕ -->
+  <div class="tab-content reveal" id="tab-install">
+    <div class="instruction-section-title">Установка пломбы УП-165</div>
+    <div class="instruction-steps">
+      <div class="instruction-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>Продевание хвоста пломбы</h4>
+          <p>Возьмите пломбу УП-165 и проденьте свободный конец хвоста через совмещённые проушины пломбируемого объекта.</p>
+        </div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Фиксация хвоста в замковой части</h4>
+          <p>Вставьте хвост пломбы в отверстие замка со стороны, на которой нанесён уникальный идентификационный номер. Протяните хвост через замковый механизм до тех пор, пока ярлычок пломбы не окажется максимально близко к проушинам.</p>
+        </div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>Проверка надёжности установки</h4>
+          <p>Убедитесь в надёжности фиксации. Для этого попробуйте вручную сдвинуть хвост в обратном направлении. Если пломба установлена правильно, обратный ход хвоста будет полностью заблокирован замковым механизмом.</p>
+        </div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Регистрация в книге учёта</h4>
+          <p>Запишите номер установленной пломбы в книгу учёта. Если на пломбе присутствует дополнительная маркировка, её также необходимо внести в учётную запись.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="instruction-section-title">Снятие пломбы УП-165</div>
+    <div class="instruction-steps">
+      <div class="instruction-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>Визуальный осмотр пломбы</h4>
+          <p>Внимательно осмотрите хвост и корпус пломбы, уделяя особое внимание области вокруг замка. Проверьте отсутствие:</p>
+          <ul>
+            <li>Механических повреждений (разрывов, разрезов, царапин)</li>
+            <li>Следов термического или химического воздействия</li>
+            <li>Изменения цвета материала</li>
+          </ul>
+        </div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Проверка целостности замкового механизма</h4>
+          <p>Несколько раз с усилием потяните за пломбу, чтобы убедиться, что хвост надёжно закреплён в замковой части.</p>
+        </div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>Сверка номера пломбы</h4>
+          <p>Сверьте идентификационный номер навешенной пломбы с записью в книге учёта. Номера должны полностью совпадать.</p>
+        </div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Снятие пломбы</h4>
+          <p>Если по результатам осмотра пломба не имеет повреждений и её номер соответствует учётной записи, выполните снятие пломбы.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <strong>⚠️ Важно:</strong> Если в ходе осмотра выявлены признаки несанкционированного вскрытия, снятие пломбы производится <strong>только в присутствии специально назначенной комиссии</strong>. По результатам составляется акт произвольной формы с фиксацией всех нарушений.
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="tab-content reveal" id="tab-faq">
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Что представляет собой пломба УП-165?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Небольшой флажок с шестилепестковым замковым механизмом и гибким хвостом длиной 135 мм. Каждое изделие имеет собственный уникальный номер на корпусе флажка, гарантирующий невозможность подделки.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Из какого материала изготовлена пломба?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Высококачественный полипропилен со специальными добавками. Устойчив к влаге, ультрафиолету и агрессивным средам. Подходит как для помещений, так и для улицы.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Какие технические характеристики имеет пломба УП-165?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <table>
+              <tr><th>Параметр</th><th>Значение</th></tr>
+              <tr><td>Материал</td><td>Полипропилен со спецдобавками</td></tr>
+              <tr><td>Общая длина</td><td>215 мм</td></tr>
+              <tr><td>Рабочая длина</td><td>135 мм</td></tr>
+              <tr><td>Сечение хвоста</td><td>3,2 × 2,7 мм</td></tr>
+              <tr><td>Площадка</td><td>20 × 32 мм</td></tr>
+              <tr><td>Усилие на разрыв</td><td>40 кгс</td></tr>
+              <tr><td>Температура</td><td>−40 до +60 °C</td></tr>
+              <tr><td>Маркировка</td><td>7-значная, лазер</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Какие цвета доступны для заказа?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Пять цветов: красный, белый, зелёный, синий, жёлтый. Цветовая маркировка позволяет разграничивать объекты, зоны ответственности или периоды пломбирования.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Где применяется пломба УП-165?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Двери складов и офисов, фургоны, контейнеры, цистерны, распределительные щиты, почтовые мешки, инкассаторские сумки, приборы учёта (счётчики воды, газа, электричества), ящики с документацией и оборудование. Главное условие — диаметр проушины от 2,8 мм.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Можно ли повторно использовать пломбу?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Нет. Пломба УП-165 — одноразовое индикаторное устройство. При вскрытии замковый механизм или хвост повреждаются, что делает факт несанкционированного доступа очевидным.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Какой минимальный диаметр проушины нужен?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">От 2,8 мм. Гибкий элемент имеет квадратно-зубчатое сечение, что обеспечивает надёжную фиксацию в замке.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Можно ли нанести логотип компании?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да, при заказе от 1 000 штук. Метод — лазерная гравировка. Можно нанести логотип, название, штрих-код, QR-код. Это повышает уровень защиты от подделки и идентифицирует принадлежность пломбы к вашей организации.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Как пломба выдерживает экстремальные температуры?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Диапазон −40 до +60 °C. Специальные добавки в составе полипропилена обеспечивают морозостойкость и термостойкость. Пломба подходит для любых регионов России — от севера до юга.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Какое усилие нужно чтобы разорвать пломбу?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">40 кгс. Достаточно для защиты от случайного обрыва. При целенаправленном усилии пломбу можно снять без инструмента, однако любое снятие оставляет необратимые следы повреждения.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Как хранить пломбы УП-165?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">В сухом помещении при температуре +5 до +30 °C, избегая прямых солнечных лучей. Упаковка — 1 000 шт., короб 300 × 240 × 200 мм, вес 2 кг. Срок хранения практически не ограничен при соблюдении условий.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Чем пломба УП-165 отличается от УП-255?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <table>
+              <tr><th>Параметр</th><th>УП-165</th><th>УП-255</th></tr>
+              <tr><td>Общая длина</td><td>215 мм</td><td>320 мм</td></tr>
+              <tr><td>Рабочая длина</td><td>135 мм</td><td>255 мм</td></tr>
+              <tr><td>Назначение</td><td>Компактные объекты, счётчики</td><td>Крупные объекты, контейнеры, фургоны</td></tr>
+            </table>
+            Выбор зависит от расстояния между проушинами: небольшое — УП-165, крупные объекты — УП-255.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Какой минимальный объём заказа?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Пломбы продаются кратно 1 000 шт. (одна заводская коробка). По вопросам меньшего количества уточняйте у менеджера.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ОТЗЫВЫ -->
+  <div class="tab-content reveal" id="tab-reviews">
+    <div class="reviews-grid">
+      <div>
+        <div class="reviews-list" id="reviews-list">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-author">Николай</div>
+              <div class="review-date">10 октября 2018</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-text">Отлично, качеством доволен</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ФОРМА ОТЗЫВА -->
+      <div>
+        <div class="review-form-card">
+          <div id="review-form-wrap">
+            <div class="review-form-title">ОСТАВИТЬ ОТЗЫВ</div>
+            <p class="review-form-subtitle">Ваш отзыв поможет другим покупателям</p>
+            <div>
+              <div class="colors-label" style="margin-bottom:10px;">Ваша оценка</div>
+              <div class="star-rating" id="star-rating">
+                <button class="star-btn" onclick="setRating(1)">★</button>
+                <button class="star-btn" onclick="setRating(2)">★</button>
+                <button class="star-btn" onclick="setRating(3)">★</button>
+                <button class="star-btn" onclick="setRating(4)">★</button>
+                <button class="star-btn" onclick="setRating(5)">★</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Ваше имя *</label>
+              <input type="text" id="r-name" placeholder="Иван Иванов">
+            </div>
+            <div class="form-group">
+              <label>Отзыв *</label>
+              <textarea id="r-text" placeholder="Расскажите о вашем опыте использования пломб..."></textarea>
+            </div>
+            <button class="form-submit" onclick="submitReview()">Опубликовать отзыв →</button>
+          </div>
+          <div class="form-success" id="review-success">
+            <div class="si">🌟</div>
+            <h4>Спасибо за отзыв!</h4>
+            <p>Ваш отзыв добавлен на страницу</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ПОХОЖИЕ ТОВАРЫ -->
+<div class="related reveal">
+  <h2>ПОХОЖИЕ ТОВАРЫ</h2>
+  <div class="related-grid">
+    <a href="product-up-255.html" class="related-card">
+      <div class="related-img"><img src="img/up-255-1.webp" alt="Пломба УП-255"></div>
+      <div class="related-body">
+        <h4>Пломба УП-255</h4>
+        <div class="price">от 3.00 руб.</div>
+      </div>
+    </a>
+    <a href="product-osa.html" class="related-card">
+      <div class="related-img"><img src="img/osa-1.webp" alt="Пломба ОСА-150"></div>
+      <div class="related-body">
+        <h4>Пломба ОСА-150</h4>
+        <div class="price">от 3.80 руб.</div>
+      </div>
+    </a>
+    <a href="product-fast.html" class="related-card">
+      <div class="related-img"><img src="img/fast-1.webp" alt="Пломба Фаст"></div>
+      <div class="related-body">
+        <h4>Пломба Фаст</h4>
+        <div class="price">от 3.90 руб.</div>
+      </div>
+    </a>
+    <a href="product-avangard.html" class="related-card">
+      <div class="related-img"><img src="img/avangard-1.webp" alt="Пломба Авангард"></div>
+      <div class="related-body">
+        <h4>Пломба Авангард 220</h4>
+        <div class="price">от 4.00 руб.</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="product-cta">
+  <h2>ГОТОВЫ СДЕЛАТЬ ЗАКАЗ?</h2>
+  <p>Свяжитесь с нами — рассчитаем стоимость с учётом объёма и маркировки. Доставка по всей России.</p>
+  <div class="cta-btns">
+    <button class="btn-primary" onclick="openModal()">Оставить заявку</button>
+    <a href="tel:+79154445070" class="btn-outline">+7 (915) 444-50-70</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="logo">ИПК<span>АЛЬФА</span></a>
+  <p>© 2003–2026 ООО «ИПК АЛЬФА». Все права защищены.</p>
+  <div class="footer-links">
+    <a href="index.html#products">Каталог</a>
+    <a href="index.html#contacts">Контакты</a>
+    <a href="http://ipkalfa.ru" target="_blank">ipkalfa.ru</a>
+  </div>
+</footer>
+
+<!-- MODAL ЗАКАЗА -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-form-wrap">
+      <h3>ЗАЯВКА НА ТОВАР</h3>
+      <p class="modal-sub">Пломба УП-165</p>
+      <div class="form-group">
+        <label>Имя и компания</label>
+        <input type="text" placeholder="ООО Ваша компания / Иван Иванов">
+      </div>
+      <div class="form-group">
+        <label>Телефон *</label>
+        <input type="tel" placeholder="+7 (___) ___-__-__">
+      </div>
+      <div class="form-group">
+        <label>Количество и комментарий</label>
+        <textarea placeholder="Например: 5 000 шт., красный цвет, с логотипом..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitModal()">Отправить заявку →</button>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div class="si">✅</div>
+      <h4>Заявка принята!</h4>
+      <p>Свяжемся с вами в ближайшее рабочее время</p>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-arrow prev" onclick="event.stopPropagation(); lightboxPrev()">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-arrow next" onclick="event.stopPropagation(); lightboxNext()">›</button>
+</div>
+
+<script>
+  // Фото галерея
+  const images = ['img/up-165-1.webp','img/up-165-2.webp','img/up-165-3.webp','img/up-165-4.webp'];
+  let currentImg = 0;
+
+  function setImg(i) {
+    currentImg = i;
+    document.getElementById('main-img').src = images[i];
+    document.querySelectorAll('.gallery-thumb').forEach((t, idx) => {
+      t.classList.toggle('active', idx === i);
+    });
+  }
+
+  // Lightbox
+  function openLightbox(i) {
+    currentImg = i;
+    document.getElementById('lightbox-img').src = images[i];
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function lightboxNext() {
+    currentImg = (currentImg + 1) % images.length;
+    document.getElementById('lightbox-img').src = images[currentImg];
+    setImg(currentImg);
+  }
+  function lightboxPrev() {
+    currentImg = (currentImg - 1 + images.length) % images.length;
+    document.getElementById('lightbox-img').src = images[currentImg];
+    setImg(currentImg);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') lightboxNext();
+    if (e.key === 'ArrowLeft') lightboxPrev();
+  });
+
+  // Табы
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    // trigger reveal
+    document.querySelectorAll('#tab-' + id + ' .reveal').forEach(el => el.classList.add('visible'));
+  }
+
+  // FAQ
+  function toggleFaq(q) {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Цвета
+  document.querySelectorAll('.color-dot').forEach(dot => {
+    dot.addEventListener('click', function() {
+      document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Оценка
+  let currentRating = 0;
+  function setRating(n) {
+    currentRating = n;
+    document.querySelectorAll('.star-btn').forEach((s, i) => {
+      s.classList.toggle('active', i < n);
+    });
+  }
+
+  // Отзыв
+  function submitReview() {
+    const name = document.getElementById('r-name').value.trim();
+    const text = document.getElementById('r-text').value.trim();
+    if (!name || !text) { alert('Заполните имя и текст отзыва'); return; }
+    const stars = '★'.repeat(currentRating || 5) + '☆'.repeat(5 - (currentRating || 5));
+    const date = new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+    const card = document.createElement('div');
+    card.className = 'review-card';
+    card.innerHTML = `
+      <div class="review-header">
+        <div class="review-author">${name}</div>
+        <div class="review-date">${date}</div>
+      </div>
+      <div class="review-stars">${stars}</div>
+      <div class="review-text">${text}</div>`;
+    document.getElementById('reviews-list').appendChild(card);
+    document.getElementById('review-form-wrap').style.display = 'none';
+    document.getElementById('review-success').style.display = 'block';
+  }
+
+  // Modal
+  function openModal() {
+    document.getElementById('modal-form-wrap').style.display = 'block';
+    document.getElementById('modal-success').style.display = 'none';
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function submitModal() {
+    document.getElementById('modal-form-wrap').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+  }
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Phone mask
+  document.querySelectorAll('input[type="tel"]').forEach(input => {
+    input.addEventListener('input', function() {
+      let v = this.value.replace(/\D/g, '');
+      if (v.startsWith('8')) v = '7' + v.slice(1);
+      if (v.startsWith('7')) v = '+7 (' + v.slice(1,4) + ') ' + v.slice(4,7) + '-' + v.slice(7,9) + '-' + v.slice(9,11);
+      this.value = v;
+    });
+  });
+
+  // Reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
