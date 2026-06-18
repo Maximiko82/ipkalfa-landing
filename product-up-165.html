@@ -90,17 +90,22 @@
     pointer-events: none;
   }
   .gallery-specs {
-    margin-top: 24px;
+    margin-top: 16px;
     background: var(--surface);
     border: 1px solid var(--border2);
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
   }
   .gallery-specs-title {
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--accent); padding: 14px 16px;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); padding: 9px 14px;
     border-bottom: 1px solid var(--border2);
   }
+  .gallery-specs .specs-table tr { border-bottom: 1px solid rgba(240,242,247,0.05); }
+  .gallery-specs .specs-table td { padding: 6px 14px; font-size: 12px; }
+  .gallery-specs .specs-table td:first-child { color: var(--muted); width: 45%; }
+  .gallery-specs .specs-table td:last-child { color: var(--text); font-weight: 400; }
+  .gallery-specs .specs-table tr:nth-child(odd) td { background: rgba(255,255,255,0.015); }
   .gallery-thumbs {
     display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;
   }
