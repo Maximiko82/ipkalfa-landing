@@ -18,15 +18,8 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Geologica', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
+  body { background: var(--bg); color: var(--text); font-family: 'Geologica', sans-serif; font-weight: 300; overflow-x: hidden; }
 
-  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -35,346 +28,141 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 3px;
-    color: var(--accent);
-    text-decoration: none;
-  }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--accent); text-decoration: none; }
   .logo span { color: var(--text); }
   nav ul { list-style: none; display: flex; gap: 36px; }
-  nav ul a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: color .2s;
-  }
+  nav ul a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; }
   nav ul a:hover { color: var(--accent); }
-  .nav-cta {
-    background: var(--accent);
-    color: #0b0e14 !important;
-    padding: 10px 24px;
-    border-radius: 4px;
-    font-weight: 700 !important;
-  }
+  .nav-cta { background: var(--accent); color: #0b0e14 !important; padding: 10px 24px; border-radius: 4px; font-weight: 700 !important; }
   .nav-cta:hover { background: var(--accent2) !important; }
 
-  /* BREADCRUMB + HERO */
   .cat-hero {
     padding: 120px 60px 60px;
     background: var(--surface);
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
     border-bottom: 1px solid var(--border);
   }
   .cat-hero::before {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,160,32,0.06) 0%, transparent 70%);
   }
-  .breadcrumb {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 13px; color: var(--muted);
-    margin-bottom: 28px;
-    position: relative;
-  }
-  .breadcrumb a {
-    color: var(--muted); text-decoration: none; transition: color .2s;
-  }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 28px; position: relative; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; transition: color .2s; }
   .breadcrumb a:hover { color: var(--accent); }
   .breadcrumb span { color: var(--accent); }
-  .cat-hero-inner {
-    display: flex; align-items: flex-start; gap: 60px;
-    position: relative;
-    flex-wrap: wrap;
-  }
+  .cat-hero-inner { display: flex; align-items: flex-start; gap: 60px; position: relative; flex-wrap: wrap; }
   .cat-hero-text { flex: 1; min-width: 280px; }
-  .cat-tag {
-    font-size: 11px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 16px;
-  }
-  .cat-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 6vw, 72px);
-    letter-spacing: 2px; line-height: 1;
-    margin-bottom: 20px;
-  }
-  .cat-desc {
-    font-size: 17px; color: var(--muted); line-height: 1.7;
-    max-width: 500px; margin-bottom: 32px;
-  }
-  .btn-primary {
-    background: var(--accent); color: #0b0e14;
-    border: none; padding: 14px 32px;
-    font-family: 'Geologica', sans-serif;
-    font-weight: 700; font-size: 14px; letter-spacing: 1px;
-    cursor: pointer; border-radius: 4px;
-    transition: background .2s, transform .1s;
-    text-decoration: none; display: inline-block;
-  }
+  .cat-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .cat-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 72px); letter-spacing: 2px; line-height: 1; margin-bottom: 20px; }
+  .cat-desc { font-size: 17px; color: var(--muted); line-height: 1.7; max-width: 500px; margin-bottom: 32px; }
+  .btn-primary { background: var(--accent); color: #0b0e14; border: none; padding: 14px 32px; font-family: 'Geologica', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; cursor: pointer; border-radius: 4px; transition: background .2s, transform .1s; text-decoration: none; display: inline-block; }
   .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
-  .btn-outline {
-    background: transparent; color: var(--text);
-    border: 1px solid rgba(240,242,247,0.3);
-    padding: 14px 32px;
-    font-family: 'Geologica', sans-serif;
-    font-size: 14px; letter-spacing: 1px;
-    cursor: pointer; border-radius: 4px;
-    transition: border-color .2s, color .2s;
-    text-decoration: none; display: inline-block;
-  }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid rgba(240,242,247,0.3); padding: 14px 32px; font-family: 'Geologica', sans-serif; font-size: 14px; letter-spacing: 1px; cursor: pointer; border-radius: 4px; transition: border-color .2s, color .2s; text-decoration: none; display: inline-block; }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Фото категории в шапке */
-  .cat-hero-img {
-    width: 340px;
-    aspect-ratio: 4/3;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--surface2);
-    flex-shrink: 0;
-  }
-  .cat-hero-img img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
-  .cat-hero-img-placeholder {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 12px;
-    font-size: 56px; color: var(--muted);
-  }
-  .cat-hero-img-placeholder span.ph-label {
-    font-size: 12px; letter-spacing: 1px;
-    text-transform: uppercase; color: rgba(136,146,164,0.4);
-  }
+  .cat-hero-img { width: 340px; aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); flex-shrink: 0; }
+  .cat-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  /* PRODUCTS GRID */
-  .cat-products {
-    padding: 80px 60px;
-  }
-  .cat-products-header {
-    margin-bottom: 48px;
-  }
-  .cat-products-header h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(32px, 4vw, 48px);
-    letter-spacing: 2px; margin-bottom: 8px;
-  }
-  .cat-products-header p {
-    color: var(--muted); font-size: 15px;
-  }
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
+  /* PRODUCTS */
+  .cat-products { padding: 80px 60px; }
+  .cat-products-header { margin-bottom: 48px; }
+  .cat-products-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4vw, 48px); letter-spacing: 2px; margin-bottom: 8px; }
+  .cat-products-header p { color: var(--muted); font-size: 15px; }
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
-  /* Карточка товара */
-  .product-card {
-    background: var(--surface);
-    border: 1px solid rgba(232,160,32,0.08);
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex; flex-direction: column;
-    transition: transform .3s, border-color .3s, box-shadow .3s;
-  }
-  .product-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
-    box-shadow: 0 10px 30px rgba(232,160,32,0.12);
-  }
-  .product-img {
-    width: 100%; aspect-ratio: 1/1;
-    background: var(--surface2);
-    overflow: hidden; position: relative;
-  }
-  .product-img img {
-    width: 100%; height: 100%; object-fit: cover;
-    display: block; transition: transform .4s ease;
-  }
-  .product-card:hover .product-img img { transform: scale(1.04); }
-  .product-img-placeholder {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 10px;
-    font-size: 36px; color: var(--muted);
-  }
-  .product-img-placeholder span.ph-label {
-    font-size: 11px; letter-spacing: 1px;
-    text-transform: uppercase; color: rgba(136,146,164,0.4);
-  }
-  .product-body {
-    padding: 20px 20px 24px;
-    display: flex; flex-direction: column; flex: 1;
-  }
-  .product-body h3 {
-    font-size: 16px; font-weight: 500;
-    margin-bottom: 8px; line-height: 1.3;
-  }
-  .product-body .product-desc {
-    font-size: 13px; color: var(--muted);
-    line-height: 1.6; flex: 1; margin-bottom: 12px;
-  }
-  .product-colors {
-    font-size: 12px; color: var(--accent);
-    letter-spacing: 0.5px; margin-bottom: 16px;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .product-colors::before {
-    content: '●'; font-size: 10px;
-  }
-  .product-order-btn {
-    width: 100%;
-    background: rgba(232,160,32,0.1);
-    border: 1px solid var(--border);
-    color: var(--accent);
-    padding: 11px 16px;
-    font-family: 'Geologica', sans-serif;
-    font-size: 13px; font-weight: 500; letter-spacing: 1px;
-    text-transform: uppercase; cursor: pointer;
-    border-radius: 6px;
-    transition: background .2s, border-color .2s;
-  }
-  .product-order-btn:hover {
-    background: var(--accent); color: #0b0e14;
-    border-color: var(--accent);
-  }
+  /* КАРТОЧКА ТОВАРА */
+  .product-card { background: var(--surface); border: 1px solid rgba(232,160,32,0.08); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform .3s, border-color .3s, box-shadow .3s; }
+  .product-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(232,160,32,0.12); }
 
-  /* CTA секция */
-  .cat-cta {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding: 80px 60px;
-    text-align: center;
-  }
-  .cat-cta h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 4vw, 56px);
-    letter-spacing: 2px; margin-bottom: 16px;
-  }
-  .cat-cta p {
-    font-size: 17px; color: var(--muted);
-    margin-bottom: 36px; max-width: 540px; margin-left: auto; margin-right: auto;
-    line-height: 1.7;
-  }
+  /* ГАЛЕРЕЯ */
+  .product-gallery { position: relative; width: 100%; aspect-ratio: 4/3; background: var(--surface2); overflow: hidden; }
+  .gallery-main { width: 100%; height: 100%; position: relative; }
+  .gallery-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s ease; }
+  .gallery-main img.active { opacity: 1; }
+
+  /* Стрелки */
+  .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(11,14,20,0.6); border: none; color: var(--text); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s, background .2s; }
+  .gallery-arrow:hover { background: var(--accent); color: #0b0e14; }
+  .gallery-arrow.prev { left: 8px; }
+  .gallery-arrow.next { right: 8px; }
+  .product-gallery:hover .gallery-arrow { opacity: 1; }
+  .gallery-arrow svg { width: 14px; height: 14px; }
+
+  /* Точки */
+  .gallery-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 10; }
+  .gallery-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.35); border: none; cursor: pointer; padding: 0; transition: background .2s, transform .2s; }
+  .gallery-dot.active { background: var(--accent); transform: scale(1.3); }
+
+  /* Миниатюры */
+  .gallery-thumbs { display: flex; gap: 6px; padding: 8px 10px; background: var(--bg); }
+  .gallery-thumb { width: 44px; height: 44px; border-radius: 6px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color .2s; flex-shrink: 0; }
+  .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery-thumb.active { border-color: var(--accent); }
+
+  /* ТЕЛО КАРТОЧКИ */
+  .product-body { padding: 18px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+  .product-body h3 { font-size: 15px; font-weight: 500; margin-bottom: 8px; line-height: 1.3; }
+  .product-desc { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; margin-bottom: 10px; }
+  .product-specs { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+  .product-spec { font-size: 12px; color: var(--muted); display: flex; gap: 6px; }
+  .product-spec strong { color: rgba(240,242,247,0.6); min-width: 90px; flex-shrink: 0; }
+  .product-price { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+  .product-price-old { font-size: 13px; color: var(--muted); text-decoration: line-through; margin-left: 6px; font-weight: 400; }
+  .product-colors { font-size: 12px; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+  .product-colors::before { content: '🎨'; font-size: 11px; }
+  .product-order-btn { width: 100%; background: rgba(232,160,32,0.1); border: 1px solid var(--border); color: var(--accent); padding: 11px 16px; font-family: 'Geologica', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 6px; transition: background .2s, border-color .2s; }
+  .product-order-btn:hover { background: var(--accent); color: #0b0e14; border-color: var(--accent); }
+
+  /* CTA */
+  .cat-cta { background: var(--surface); border-top: 1px solid var(--border); padding: 80px 60px; text-align: center; }
+  .cat-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 56px); letter-spacing: 2px; margin-bottom: 16px; }
+  .cat-cta p { font-size: 17px; color: var(--muted); margin-bottom: 36px; max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.7; }
   .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
   /* MODAL */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(6px);
-    align-items: center; justify-content: center;
-  }
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); align-items: center; justify-content: center; }
   .modal-overlay.active { display: flex; }
-  .modal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 48px;
-    max-width: 480px; width: 90%;
-    position: relative;
-  }
-  .modal-close {
-    position: absolute; top: 20px; right: 20px;
-    background: none; border: none;
-    color: var(--muted); font-size: 22px; cursor: pointer;
-    transition: color .2s;
-  }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 48px; max-width: 480px; width: 90%; position: relative; }
+  .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; transition: color .2s; }
   .modal-close:hover { color: var(--text); }
-  .modal h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px; letter-spacing: 2px; margin-bottom: 6px;
-  }
-  .modal .modal-product-name {
-    color: var(--accent); font-size: 14px; margin-bottom: 24px;
-  }
+  .modal h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; margin-bottom: 6px; }
+  .modal-product-name { color: var(--accent); font-size: 14px; margin-bottom: 24px; }
   .form-group { margin-bottom: 18px; }
-  .form-group label {
-    display: block; font-size: 12px; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    background: var(--bg);
-    border: 1px solid rgba(240,242,247,0.1);
-    border-radius: 8px; padding: 13px 16px;
-    color: var(--text);
-    font-family: 'Geologica', sans-serif;
-    font-size: 15px; outline: none;
-    transition: border-color .2s;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus { border-color: var(--accent); }
+  .form-group label { display: block; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .form-group input, .form-group textarea { width: 100%; background: var(--bg); border: 1px solid rgba(240,242,247,0.1); border-radius: 8px; padding: 13px 16px; color: var(--text); font-family: 'Geologica', sans-serif; font-size: 15px; outline: none; transition: border-color .2s; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
   .form-group textarea { resize: vertical; min-height: 90px; }
-  .form-submit {
-    width: 100%;
-    background: var(--accent); color: #0b0e14;
-    border: none; padding: 15px;
-    font-family: 'Geologica', sans-serif;
-    font-weight: 700; font-size: 14px; letter-spacing: 1px;
-    text-transform: uppercase; cursor: pointer;
-    border-radius: 8px; transition: background .2s;
-    margin-top: 8px;
-  }
+  .form-submit { width: 100%; background: var(--accent); color: #0b0e14; border: none; padding: 15px; font-family: 'Geologica', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 8px; transition: background .2s; margin-top: 8px; }
   .form-submit:hover { background: var(--accent2); }
-  .modal-success {
-    display: none; text-align: center; padding: 20px 0;
-  }
+  .modal-success { display: none; text-align: center; padding: 20px 0; }
   .modal-success .si { font-size: 48px; margin-bottom: 16px; }
   .modal-success h4 { font-size: 20px; margin-bottom: 8px; }
   .modal-success p { color: var(--muted); font-size: 14px; }
 
-  /* FOOTER */
-  footer {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    padding: 32px 60px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 20px;
-  }
+  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
   footer p { font-size: 13px; color: var(--muted); }
   .footer-links { display: flex; gap: 24px; }
-  .footer-links a {
-    font-size: 13px; color: var(--muted);
-    text-decoration: none; transition: color .2s;
-  }
+  .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
   .footer-links a:hover { color: var(--accent); }
 
-  /* REVEAL */
-  .reveal {
-    opacity: 0; transform: translateY(24px);
-    transition: opacity .5s ease, transform .5s ease;
-  }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* RESPONSIVE */
-  @media (max-width: 1200px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
     nav ul { display: none; }
     .cat-hero { padding: 100px 24px 48px; }
     .cat-hero-img { width: 100%; }
     .cat-products { padding: 60px 24px; }
-    .products-grid { grid-template-columns: repeat(2, 1fr); }
     .cat-cta { padding: 60px 24px; }
     footer { padding: 28px 24px; flex-direction: column; text-align: center; }
   }
-  @media (max-width: 560px) {
-    .products-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 560px) { .products-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="logo">ИПК<span>АЛЬФА</span></a>
   <ul>
@@ -386,7 +174,6 @@
   </ul>
 </nav>
 
-<!-- HERO КАТЕГОРИИ -->
 <div class="cat-hero">
   <div class="breadcrumb">
     <a href="index.html">Главная</a>
@@ -399,108 +186,385 @@
     <div class="cat-hero-text">
       <div class="cat-tag">Категория</div>
       <div class="cat-title">УНИВЕРСАЛЬНЫЕ ПЛОМБЫ</div>
-      <p class="cat-desc">Пластиковые номерные пломбы разных конфигураций для опечатывания грузов и помещений</p>
+      <p class="cat-desc">Пластиковые номерные пломбы собственного производства. Уникальная нумерация, лазерная маркировка, нанесение логотипа от 1000 шт. Работаем с 2003 года.</p>
       <div style="display:flex; gap:14px; flex-wrap:wrap;">
         <a href="index.html#forms" class="btn-primary">Запросить цену</a>
         <a href="index.html" class="btn-outline">← Все категории</a>
       </div>
     </div>
     <div class="cat-hero-img">
-      <!-- ЗАМЕНИТЕ src на путь к вашему фото категории: img/universal.jpg -->
-      <img src="img/universal.jpg" alt="Универсальные пломбы"
-           onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">
-      <div class="cat-hero-img-placeholder" style="display:none;">
-        📦<span class="ph-label">Фото категории</span>
-      </div>
+      <img src="img/universal.jpg" alt="Универсальные пломбы">
     </div>
   </div>
 </div>
 
-<!-- ТОВАРЫ -->
 <section class="cat-products">
   <div class="cat-products-header reveal">
     <h2>ТОВАРЫ В КАТЕГОРИИ</h2>
-    <p>Нажмите «Заказать» на товаре чтобы оставить заявку</p>
+    <p>11 товаров · Нажмите «Заказать» чтобы оставить заявку</p>
   </div>
   <div class="products-grid">
+
+    <!-- 1. УП-165 -->
     <div class="product-card reveal">
-      <div class="product-img">
-        <!-- ЗАМЕНИТЕ src: img/universal-1.jpg -->
-        <img src="img/universal-1.jpg" alt="Пломба ОСА"
-             onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">
-        <div class="product-img-placeholder" style="display:none;">
-          📦<span class="ph-label">Фото товара</span>
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/up-165-1.webp" class="active" alt="Пломба УП-165">
+          <img src="img/up-165-2.webp" alt="Пломба УП-165">
+          <img src="img/up-165-3.webp" alt="Пломба УП-165">
+          <img src="img/up-165-4.webp" alt="Пломба УП-165">
         </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
       </div>
+      <div class="gallery-thumbs"></div>
       <div class="product-body">
-        <h3>Пломба ОСА</h3>
-        <p class="product-desc">Пластиковая номерная пломба-стяжка. Устойчива к внешним воздействиям, выдерживает нагрузку до 50 кг. Нумерация лазерная.</p>
-        <div class="product-colors">Любой цвет под заказ</div>
-        <button class="product-order-btn" onclick="openModal(\'Пломба ОСА\')">Заказать</button>
+        <h3>Пломба УП-165</h3>
+        <p class="product-desc">Собственная разработка ИПК АЛЬФА без аналогов. Полипропилен со спецдобавками, шестилепестковый замок, повышенная эластичность.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> 215 мм (раб. 135 мм)</div>
+          <div class="product-spec"><strong>Маркировка:</strong> 7-значная, лазер</div>
+          <div class="product-spec"><strong>Температура:</strong> −40°C до +60°C</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 4.15 руб. <span class="product-price-old">5.00 руб.</span></div>
+        <div class="product-colors">Красный, белый, зелёный, синий, жёлтый</div>
+        <button class="product-order-btn" onclick="openModal('Пломба УП-165')">Заказать</button>
       </div>
     </div>
+
+    <!-- 2. УП-255 -->
     <div class="product-card reveal">
-      <div class="product-img">
-        <!-- ЗАМЕНИТЕ src: img/universal-2.jpg -->
-        <img src="img/universal-2.jpg" alt="Пломба Стрела"
-             onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">
-        <div class="product-img-placeholder" style="display:none;">
-          📦<span class="ph-label">Фото товара</span>
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/up-255-1.webp" class="active" alt="Пломба УП-255">
+          <img src="img/up-255-2.webp" alt="Пломба УП-255">
+          <img src="img/up-255-3.webp" alt="Пломба УП-255">
         </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
       </div>
+      <div class="gallery-thumbs"></div>
       <div class="product-body">
-        <h3>Пломба Стрела</h3>
-        <p class="product-desc">Одноразовая пломба с уникальным номером. Применяется для пломбирования дверей, люков, контейнеров.</p>
-        <div class="product-colors">Красный, синий, жёлтый, белый</div>
-        <button class="product-order-btn" onclick="openModal(\'Пломба Стрела\')">Заказать</button>
+        <h3>Пломба УП-255</h3>
+        <p class="product-desc">Полипропилен с немецкими морозостойкими присадками. Стрелка-указатель для правильной вставки. Трапециевидные зубцы в замке.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> 315 мм (раб. 225 мм)</div>
+          <div class="product-spec"><strong>Маркировка:</strong> 7-значная</div>
+          <div class="product-spec"><strong>Температура:</strong> −30°C до +60°C</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 3.00 руб. <span class="product-price-old">4.50 руб.</span></div>
+        <div class="product-colors">Красный, белый, зелёный, синий, жёлтый</div>
+        <button class="product-order-btn" onclick="openModal('Пломба УП-255')">Заказать</button>
       </div>
     </div>
+
+    <!-- 3. Фаст -->
     <div class="product-card reveal">
-      <div class="product-img">
-        <!-- ЗАМЕНИТЕ src: img/universal-3.jpg -->
-        <img src="img/universal-3.jpg" alt="Пломба Клипса"
-             onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">
-        <div class="product-img-placeholder" style="display:none;">
-          📦<span class="ph-label">Фото товара</span>
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/fast-1.webp" class="active" alt="Пломба Фаст">
+          <img src="img/fast-2.webp" alt="Пломба Фаст">
+          <img src="img/fast-3.webp" alt="Пломба Фаст">
         </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
       </div>
+      <div class="gallery-thumbs"></div>
       <div class="product-body">
-        <h3>Пломба Клипса</h3>
-        <p class="product-desc">Быстросъёмная пломба-клипса с возможностью нанесения логотипа. Идеальна для многократно используемых объектов.</p>
-        <div class="product-colors">Любой цвет под заказ</div>
-        <button class="product-order-btn" onclick="openModal(\'Пломба Клипса\')">Заказать</button>
+        <h3>Пломба Фаст</h3>
+        <p class="product-desc">Замок из нержавеющей стали с пластиковой защитной вставкой. 3 размера рабочей части на выбор. Логотип и штрих-код под заказ.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> раб. 150 / 220 / 330 мм</div>
+          <div class="product-spec"><strong>Маркировка:</strong> 7–9-значная</div>
+          <div class="product-spec"><strong>Температура:</strong> −40°C до +60°C</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 3.90 руб.</div>
+        <div class="product-colors">Красный, белый, зелёный, синий, жёлтый</div>
+        <button class="product-order-btn" onclick="openModal('Пломба Фаст')">Заказать</button>
       </div>
     </div>
+
+    <!-- 4. Авангард -->
     <div class="product-card reveal">
-      <div class="product-img">
-        <!-- ЗАМЕНИТЕ src: img/universal-4.jpg -->
-        <img src="img/universal-4.jpg" alt="Пломба Скоба"
-             onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">
-        <div class="product-img-placeholder" style="display:none;">
-          📦<span class="ph-label">Фото товара</span>
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/avangard-1.webp" class="active" alt="Пломба Авангард">
+          <img src="img/avangard-2.webp" alt="Пломба Авангард">
         </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
       </div>
+      <div class="gallery-thumbs"></div>
       <div class="product-body">
-        <h3>Пломба Скоба</h3>
-        <p class="product-desc">Пломба с металлическим сердечником. Повышенная степень защиты, применяется на транспорте и складах.</p>
-        <div class="product-colors">Белый, красный</div>
-        <button class="product-order-btn" onclick="openModal(\'Пломба Скоба\')">Заказать</button>
+        <h3>Пломба Авангард 220</h3>
+        <p class="product-desc">Патентованная разработка. Трёхкомпонентная защита, ультразвуковая сварка кольца-фиксатора. QR-код, штрих-код, нумерация с обеих сторон.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> 305 мм (раб. 220 мм)</div>
+          <div class="product-spec"><strong>Маркировка:</strong> 8-значная, лазер</div>
+          <div class="product-spec"><strong>Температура:</strong> −40°C до +60°C</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 4.00 руб.</div>
+        <div class="product-colors">Красный, белый, зелёный, синий, жёлтый</div>
+        <button class="product-order-btn" onclick="openModal('Пломба Авангард 220')">Заказать</button>
       </div>
     </div>
+
+    <!-- 5. Универсал -->
+    <div class="product-card reveal">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/universal-p-1.webp" class="active" alt="Пломба Универсал">
+          <img src="img/universal-p-2.webp" alt="Пломба Универсал">
+          <img src="img/universal-p-3.webp" alt="Пломба Универсал">
+        </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
+      </div>
+      <div class="gallery-thumbs"></div>
+      <div class="product-body">
+        <h3>Пломба Универсал 140</h3>
+        <p class="product-desc">Классика ПК 91 ОП — одна из первых отечественных разработок. Шестилепестковая цанга, три варианта длины рабочей части.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> раб. 140 / 220 / 350 мм</div>
+          <div class="product-spec"><strong>Маркировка:</strong> 7-значная</div>
+          <div class="product-spec"><strong>Температура:</strong> −40°C до +70°C</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 5.00 руб. <span class="product-price-old">5.50 руб.</span></div>
+        <div class="product-colors">Красный, белый, зелёный, синий, жёлтый</div>
+        <button class="product-order-btn" onclick="openModal('Пломба Универсал 140')">Заказать</button>
+      </div>
+    </div>
+
+    <!-- 6. ОСА -->
+    <div class="product-card reveal">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/osa-1.webp" class="active" alt="Пломба ОСА">
+          <img src="img/osa-2.webp" alt="Пломба ОСА">
+          <img src="img/osa-3.webp" alt="Пломба ОСА">
+          <img src="img/osa-4.webp" alt="Пломба ОСА">
+        </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
+      </div>
+      <div class="gallery-thumbs"></div>
+      <div class="product-body">
+        <h3>Пломба ОСА-150</h3>
+        <p class="product-desc">Инновация ИПК АЛЬФА. Уникальный сополимер, четырёхлепестковая цанга из нержавеющей стали. Монолитная конструкция без доп. защиты замка.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> раб. 150 / 230 / 320 мм</div>
+          <div class="product-spec"><strong>Маркировка:</strong> 7-значная</div>
+          <div class="product-spec"><strong>Температура:</strong> −40°C до +70°C</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 3.80 руб. <span class="product-price-old">4.50 руб.</span></div>
+        <div class="product-colors">Красный, белый, зелёный, синий, жёлтый</div>
+        <button class="product-order-btn" onclick="openModal('Пломба ОСА-150')">Заказать</button>
+      </div>
+    </div>
+
+    <!-- 7. Шоплок -->
+    <div class="product-card reveal">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/shoplok-1.webp" class="active" alt="Пломба Шоплок">
+          <img src="img/shoplok-2.webp" alt="Пломба Шоплок">
+        </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
+      </div>
+      <div class="gallery-thumbs"></div>
+      <div class="product-body">
+        <h3>Пломба Шоплок 140</h3>
+        <p class="product-desc">Фиксированная длина, без острых углов. Идеальна для интернет-торговли — защита от необоснованных возвратов. Два размера: 140 и 160 мм.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> раб. 140 / 160 мм</div>
+          <div class="product-spec"><strong>Маркировка:</strong> 8-значная</div>
+          <div class="product-spec"><strong>Температура:</strong> −40°C до +60°C</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 4.50 руб. <span class="product-price-old">5.80 руб.</span></div>
+        <div class="product-colors">Красный, белый, зелёный, синий, жёлтый</div>
+        <button class="product-order-btn" onclick="openModal('Пломба Шоплок 140')">Заказать</button>
+      </div>
+    </div>
+
+    <!-- 8. Вэго -->
+    <div class="product-card reveal">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/vego-1.webp" class="active" alt="Пломба Вэго">
+          <img src="img/vego-2.webp" alt="Пломба Вэго">
+        </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
+      </div>
+      <div class="gallery-thumbs"></div>
+      <div class="product-body">
+        <h3>Пломба Вэго</h3>
+        <p class="product-desc">Гибкий элемент диаметром 1 мм — для объектов с минимальным размером проушины. Замок из нержавеющей стали с цветным индикатором вскрытия.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> 175 мм (раб. 152 мм)</div>
+          <div class="product-spec"><strong>Диаметр:</strong> 1 мм</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 6.50 руб. <span class="product-price-old">8.00 руб.</span></div>
+        <div class="product-colors">Цветной индикатор вскрытия</div>
+        <button class="product-order-btn" onclick="openModal('Пломба Вэго')">Заказать</button>
+      </div>
+    </div>
+
+    <!-- 9. Стрела -->
+    <div class="product-card reveal">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/strela-1.webp" class="active" alt="Пломба Стрела-525">
+          <img src="img/strela-2.webp" alt="Пломба Стрела-525">
+        </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
+      </div>
+      <div class="gallery-thumbs"></div>
+      <div class="product-body">
+        <h3>Пломба Стрела-525</h3>
+        <p class="product-desc">Увеличенная рабочая длина 525 мм для крупных объектов. Четырёхлепестковая цанга. Контейнеры, фургоны, сейфы, банкоматы.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> 616 мм (раб. 525 мм)</div>
+          <div class="product-spec"><strong>Маркировка:</strong> Лазерная</div>
+          <div class="product-spec"><strong>Температура:</strong> −40°C до +70°C</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 8.55 руб. <span class="product-price-old">10.00 руб.</span></div>
+        <div class="product-colors">Жёлтый, красный, зелёный, оранжевый</div>
+        <button class="product-order-btn" onclick="openModal('Пломба Стрела-525')">Заказать</button>
+      </div>
+    </div>
+
+    <!-- 10. УПМ-420 -->
+    <div class="product-card reveal">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/upm-1.webp" class="active" alt="Пломба УПМ-420">
+          <img src="img/upm-2.webp" alt="Пломба УПМ-420">
+          <img src="img/upm-3.webp" alt="Пломба УПМ-420">
+        </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
+      </div>
+      <div class="gallery-thumbs"></div>
+      <div class="product-body">
+        <h3>Пломба УПМ-420</h3>
+        <p class="product-desc">Мешковая пломба. Фиксирующие шипы + заострённый хвост-прокалыватель. Площадка 45×18 мм. Отверстие для дополнительной бирки.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> 420 мм (раб. 350 мм)</div>
+          <div class="product-spec"><strong>Маркировка:</strong> Тиснение / лазер</div>
+          <div class="product-spec"><strong>Температура:</strong> −40°C до +70°C</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 7.00 руб. <span class="product-price-old">8.00 руб.</span></div>
+        <div class="product-colors">Красный, белый, зелёный, синий, жёлтый</div>
+        <button class="product-order-btn" onclick="openModal('Пломба УПМ-420')">Заказать</button>
+      </div>
+    </div>
+
+    <!-- 11. Дракон-Про -->
+    <div class="product-card reveal">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="img/drakon-1.webp" class="active" alt="Пломба Дракон-Про">
+          <img src="img/drakon-2.webp" alt="Пломба Дракон-Про">
+        </div>
+        <button class="gallery-arrow prev" onclick="galleryPrev(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="gallery-arrow next" onclick="galleryNext(this)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div class="gallery-dots"></div>
+      </div>
+      <div class="gallery-thumbs"></div>
+      <div class="product-body">
+        <h3>Пломба Дракон-Про</h3>
+        <p class="product-desc">Флагман для мешков. 8 фиксирующих шипов, острый прокалыватель. Тройная защита от вскрытия, ультразвуковая сварка. Лазер на чёрном цвете.</p>
+        <div class="product-specs">
+          <div class="product-spec"><strong>Длина:</strong> 427 мм (раб. 374 мм)</div>
+          <div class="product-spec"><strong>Маркировка:</strong> 8-значная, лазер</div>
+          <div class="product-spec"><strong>Температура:</strong> −40°C до +70°C</div>
+          <div class="product-spec"><strong>Упаковка:</strong> 1000 шт.</div>
+        </div>
+        <div class="product-price">от 7.80 руб. <span class="product-price-old">10.00 руб.</span></div>
+        <div class="product-colors">Красный, белый, зелёный, синий, жёлтый, чёрный</div>
+        <button class="product-order-btn" onclick="openModal('Пломба Дракон-Про')">Заказать</button>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- CTA -->
 <div class="cat-cta">
   <h2>НУЖНА ПОМОЩЬ С ВЫБОРОМ?</h2>
-  <p>Наши специалисты помогут подобрать оптимальное решение под ваши задачи. Работаем с юрлицами и физлицами по всей России.</p>
+  <p>Наши специалисты помогут подобрать оптимальную пломбу под ваши задачи. Работаем с юрлицами и физлицами по всей России.</p>
   <div class="cta-btns">
     <a href="index.html#forms" class="btn-primary">Оставить заявку</a>
     <a href="tel:+79154445070" class="btn-outline">+7 (915) 444-50-70</a>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <a href="index.html" class="logo">ИПК<span>АЛЬФА</span></a>
   <p>© 2003–2026 ООО «ИПК АЛЬФА». Все права защищены.</p>
@@ -511,7 +575,6 @@
   </div>
 </footer>
 
-<!-- MODAL ЗАКАЗА -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
@@ -520,15 +583,15 @@
       <p class="modal-product-name" id="modal-product-name"></p>
       <div class="form-group">
         <label>Имя и компания</label>
-        <input type="text" id="m-name" placeholder="ООО Ваша компания / Иван Иванов">
+        <input type="text" placeholder="ООО Ваша компания / Иван Иванов">
       </div>
       <div class="form-group">
         <label>Телефон *</label>
-        <input type="tel" id="m-phone" placeholder="+7 (___) ___-__-__">
+        <input type="tel" placeholder="+7 (___) ___-__-__">
       </div>
       <div class="form-group">
-        <label>Комментарий</label>
-        <textarea id="m-comment" placeholder="Количество, особые требования..."></textarea>
+        <label>Количество и комментарий</label>
+        <textarea placeholder="Например: 5000 шт., нужна маркировка с логотипом..."></textarea>
       </div>
       <button class="form-submit" onclick="submitModal()">Отправить заявку →</button>
     </div>
@@ -541,7 +604,59 @@
 </div>
 
 <script>
-  // Reveal animation
+  // Инициализация галерей
+  document.querySelectorAll('.product-card').forEach(card => {
+    const imgs = card.querySelectorAll('.gallery-main img');
+    const dotsContainer = card.querySelector('.gallery-dots');
+    const thumbsContainer = card.querySelector('.gallery-thumbs');
+    if (imgs.length <= 1) {
+      card.querySelector('.gallery-arrow.prev').style.display = 'none';
+      card.querySelector('.gallery-arrow.next').style.display = 'none';
+    }
+    imgs.forEach((img, i) => {
+      // Точка
+      const dot = document.createElement('button');
+      dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => setSlide(card, i);
+      dotsContainer.appendChild(dot);
+      // Миниатюра
+      const thumb = document.createElement('div');
+      thumb.className = 'gallery-thumb' + (i === 0 ? ' active' : '');
+      const tImg = document.createElement('img');
+      tImg.src = img.src;
+      tImg.alt = img.alt;
+      thumb.appendChild(tImg);
+      thumb.onclick = () => setSlide(card, i);
+      thumbsContainer.appendChild(thumb);
+    });
+    card._currentSlide = 0;
+  });
+
+  function setSlide(card, index) {
+    const imgs = card.querySelectorAll('.gallery-main img');
+    const dots = card.querySelectorAll('.gallery-dot');
+    const thumbs = card.querySelectorAll('.gallery-thumb');
+    const total = imgs.length;
+    const i = (index + total) % total;
+    imgs.forEach(img => img.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    thumbs.forEach(t => t.classList.remove('active'));
+    imgs[i].classList.add('active');
+    dots[i].classList.add('active');
+    thumbs[i].classList.add('active');
+    card._currentSlide = i;
+  }
+
+  function galleryNext(btn) {
+    const card = btn.closest('.product-card');
+    setSlide(card, (card._currentSlide || 0) + 1);
+  }
+  function galleryPrev(btn) {
+    const card = btn.closest('.product-card');
+    setSlide(card, (card._currentSlide || 0) - 1);
+  }
+
+  // Reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
