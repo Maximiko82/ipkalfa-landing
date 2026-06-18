@@ -89,6 +89,18 @@
     padding: 4px 10px; border-radius: 4px;
     pointer-events: none;
   }
+  .gallery-specs {
+    margin-top: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .gallery-specs-title {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); padding: 14px 16px;
+    border-bottom: 1px solid var(--border2);
+  }
   .gallery-thumbs {
     display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;
   }
@@ -532,13 +544,34 @@
         <img src="img/up-165-4.webp" alt="">
       </div>
     </div>
+
+    <!-- ХАРАКТЕРИСТИКИ ПОД ГАЛЕРЕЕЙ -->
+    <div class="gallery-specs">
+      <div class="gallery-specs-title">Характеристики</div>
+      <table class="specs-table">
+        <tr><td>Общая длина</td><td>215 мм</td></tr>
+        <tr><td>Рабочая длина</td><td>135 мм</td></tr>
+        <tr><td>Сечение гибкого элемента</td><td>3,2 × 2,7 мм</td></tr>
+        <tr><td>Материал</td><td>Полипропилен со специальными добавками</td></tr>
+        <tr><td>Размер площадки</td><td>20 × 32 мм</td></tr>
+        <tr><td>Цвета</td><td>Красный, белый, зелёный, синий, жёлтый</td></tr>
+        <tr><td>Маркировка</td><td>7-значная, лазерная</td></tr>
+        <tr><td>Усилие на разрыв</td><td>40 кгс</td></tr>
+        <tr><td>Тип замка</td><td>Встроенный</td></tr>
+        <tr><td>Температура</td><td>от −40°C до +60°C</td></tr>
+        <tr><td>Упаковка</td><td>1 000 шт.</td></tr>
+        <tr><td>Размер упаковки</td><td>300 × 240 × 200 мм</td></tr>
+        <tr><td>Вес упаковки</td><td>2 кг</td></tr>
+        <tr><td>Производитель</td><td>ООО «ИПК АЛЬФА», Россия</td></tr>
+      </table>
+    </div>
   </div>
 
   <!-- ИНФО -->
   <div class="product-info">
     <div class="product-badge">Производство ИПК АЛЬФА</div>
     <h1 class="product-title">ПЛОМБА УП-165</h1>
-    <p class="product-subtitle">Номерная пластиковая пломба собственной разработки. Нет аналогов на рынке. Полипропилен со спецдобавками, шестилепестковый замок, лазерная нумерация.</p>
+    <p class="product-subtitle">Номерная пластиковая пломба собственной разработки. Нет аналогов на рынке. Полипропилен со спецдобавками, встроенный замок, лазерная нумерация.</p>
 
     <div class="product-rating">
       <div class="stars">★★★★★</div>
@@ -600,17 +633,15 @@
 <!-- СЕКЦИИ (ТАБЫ) -->
 <div class="product-sections">
   <div class="section-tabs">
-    <button class="tab-btn active" onclick="switchTab('specs', this)">Характеристики</button>
-    <button class="tab-btn" onclick="switchTab('desc', this)">Описание</button>
+    <button class="tab-btn active" onclick="switchTab('desc', this)">Описание</button>
     <button class="tab-btn" onclick="switchTab('install', this)">Установка / Снятие</button>
     <button class="tab-btn" onclick="switchTab('faq', this)">FAQ</button>
     <button class="tab-btn" onclick="switchTab('reviews', this)">Отзывы (1)</button>
   </div>
 
-  <!-- ХАРАКТЕРИСТИКИ -->
-  <div class="tab-content active reveal" id="tab-specs">
+  <!-- ХАРАКТЕРИСТИКИ — скрытая вкладка (таблица теперь под галереей) -->
+  <div class="tab-content reveal" id="tab-specs" style="display:none !important;">
     <table class="specs-table">
-      <tr><td>Модель</td><td>УП-165</td></tr>
       <tr><td>Общая длина</td><td>215 мм</td></tr>
       <tr><td>Рабочая длина</td><td>135 мм</td></tr>
       <tr><td>Сечение гибкого элемента</td><td>3,2 × 2,7 мм</td></tr>
@@ -618,22 +649,18 @@
       <tr><td>Размер информационной площадки</td><td>20 × 32 мм</td></tr>
       <tr><td>Цвета</td><td>Красный, белый, зелёный, синий, жёлтый</td></tr>
       <tr><td>Маркировка</td><td>7-значная, лазерная</td></tr>
-      <tr><td>Логотип / штрих-код</td><td>От 1 000 шт.</td></tr>
       <tr><td>Усилие на разрыв</td><td>40 кгс</td></tr>
-      <tr><td>Тип замка</td><td>Встроенный, шестилепестковый</td></tr>
-      <tr><td>Установка</td><td>Вручную, без инструментов</td></tr>
+      <tr><td>Тип замка</td><td>Встроенный</td></tr>
       <tr><td>Температура использования</td><td>от −40°C до +60°C</td></tr>
       <tr><td>Упаковка</td><td>1 000 шт.</td></tr>
       <tr><td>Размер упаковки</td><td>300 × 240 × 200 мм</td></tr>
       <tr><td>Вес упаковки</td><td>2 кг</td></tr>
-      <tr><td>Гарантийный срок</td><td>12 месяцев с даты поставки</td></tr>
       <tr><td>Производитель</td><td>ООО «ИПК АЛЬФА», Россия</td></tr>
-      <tr><td>Артикул</td><td>1-1</td></tr>
     </table>
   </div>
 
   <!-- ОПИСАНИЕ -->
-  <div class="tab-content reveal" id="tab-desc">
+  <div class="tab-content active reveal" id="tab-desc">
     <div class="desc-content">
       <h3>Номерная пломба УП-165 — уникальная разработка ИПК АЛЬФА</h3>
       <p>Пломба УП-165 — собственный продукт компании ООО «ИПК АЛЬФА». На сегодняшний день на рынке нет аналогов этой пломбе, что делает её по-настоящему уникальным решением для надёжного опломбирования.</p>
@@ -1120,11 +1147,12 @@
 
   // Табы
   function switchTab(id, btn) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => {
+      if (t.id !== 'tab-specs') t.classList.remove('active');
+    });
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + id).classList.add('active');
     btn.classList.add('active');
-    // trigger reveal
     document.querySelectorAll('#tab-' + id + ' .reveal').forEach(el => el.classList.add('visible'));
   }
 
