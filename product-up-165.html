@@ -73,8 +73,9 @@
     cursor: zoom-in;
   }
   .gallery-main-img img {
-    width: 100%; height: 100%; object-fit: cover;
+    width: 100%; height: 100%; object-fit: contain;
     display: block;
+    padding: 12px;
     transition: transform .3s ease;
   }
   .gallery-main-img:hover img { transform: scale(1.03); }
