@@ -94,6 +94,19 @@
                       linear-gradient(90deg, var(--accent) 1px, transparent 1px);
     background-size: 50px 50px;
   }
+  /* Слайд-картинка на всю ширину/высоту блока */
+  .hero-slide-img {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-slide.image-slide { padding: 0; }
+  .hero-slide-img-btns {
+    position: absolute; z-index: 2;
+    left: 60px; bottom: 56px;
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
   .hero-slide-content { position: relative; z-index: 1; max-width: 640px; }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
@@ -645,8 +658,28 @@
 <div class="hero-slider">
   <div class="hero-slides" id="hero-slides">
 
-    <!-- СЛАЙД 1 — образец. Скопируйте этот блок div.hero-slide, чтобы добавить новые слайды -->
-    <div class="hero-slide active">
+    <!-- СЛАЙД 1 — Собственное производство -->
+    <div class="hero-slide image-slide active">
+      <img class="hero-slide-img" src="img/slide-proizvodstvo.png" alt="Собственное производство">
+      <div class="hero-slide-img-btns">
+        <a href="#advantages" class="btn-primary">О компании</a>
+        <a href="#products" class="btn-outline">Смотреть каталог</a>
+      </div>
+    </div>
+    <!-- Конец слайда 1 -->
+
+    <!-- СЛАЙД 2 — Универсальные пломбы -->
+    <div class="hero-slide image-slide">
+      <img class="hero-slide-img" src="img/slide-universal.png" alt="Универсальные пластиковые пломбы">
+      <div class="hero-slide-img-btns">
+        <a href="category-universal.html" class="btn-primary">Перейти в раздел</a>
+        <a href="#forms" class="btn-outline">Оставить заявку</a>
+      </div>
+    </div>
+    <!-- Конец слайда 2 -->
+
+    <!-- СЛАЙД 3 — образец текстового слайда. Скопируйте этот блок div.hero-slide, чтобы добавить новые слайды -->
+    <div class="hero-slide">
       <div class="hero-slide-bg"></div>
       <div class="hero-slide-content">
         <div class="hero-badge">Производство с 2003 года</div>
@@ -658,7 +691,7 @@
         </div>
       </div>
     </div>
-    <!-- Конец слайда 1 -->
+    <!-- Конец слайда 3 -->
 
   </div>
 
