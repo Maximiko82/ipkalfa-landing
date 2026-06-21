@@ -26,50 +26,153 @@
     overflow-x: hidden;
   }
 
-  /* NAV */
-  nav {
+  /* ===== ВЕРХНЯЯ ШАПКА (двухуровневая) ===== */
+  .site-header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  }
+
+  /* --- Верхняя полоса: логотип, контакты, поиск --- */
+  .header-top {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 60px;
-    background: rgba(11,14,20,0.85);
+    gap: 24px;
+    padding: 12px 60px;
+    background: rgba(11,14,20,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-  .logo {
+  .header-brand {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .header-brand img {
+    height: 38px; width: auto; display: block;
+  }
+  .header-brand-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
+    font-size: 24px;
     letter-spacing: 3px;
     color: var(--accent);
-    text-decoration: none;
+    line-height: 1;
   }
-  .logo span { color: var(--text); }
-  nav ul { list-style: none; display: flex; gap: 36px; }
-  nav ul a {
+  .header-brand-name span { color: var(--text); }
+
+  /* Поиск */
+  .header-search {
+    flex: 1; max-width: 480px;
+    position: relative;
+  }
+  .header-search input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid rgba(240,242,247,0.12);
+    border-radius: 100px;
+    padding: 10px 44px 10px 18px;
+    color: var(--text);
+    font-family: 'Geologica', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .header-search input::placeholder { color: var(--muted); }
+  .header-search input:focus { border-color: var(--accent); }
+  .header-search button {
+    position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: #0b0e14;
+    transition: background .2s;
+  }
+  .header-search button:hover { background: var(--accent2); }
+  .header-search svg { width: 15px; height: 15px; }
+
+  /* Контактный блок справа */
+  .header-contacts {
+    display: flex; align-items: center; gap: 22px;
+    flex-shrink: 0;
+  }
+  .header-contact-item {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12.5px;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+  .header-contact-item .hci-icon {
+    width: 16px; height: 16px; flex-shrink: 0;
+    color: var(--accent);
+  }
+  .header-contact-item .hci-icon svg { width: 100%; height: 100%; }
+  .header-contact-item a, .header-contact-item .hci-text a {
+    color: var(--text); text-decoration: none; transition: color .2s;
+  }
+  .header-contact-item:hover .hci-text-main { color: var(--accent); }
+  .hci-text-main { color: var(--text); display: block; }
+  .hci-text-sub { color: var(--muted); font-size: 11px; }
+
+  /* --- Нижняя полоса: меню + корзина --- */
+  .header-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    background: rgba(19,23,31,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-menu {
+    list-style: none; display: flex; gap: 4px;
+  }
+  .header-menu a {
+    display: block;
     color: var(--muted);
     text-decoration: none;
     font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: color .2s;
+    letter-spacing: 0.5px;
+    padding: 14px 16px;
+    transition: color .2s, background .2s;
+    white-space: nowrap;
   }
-  nav ul a:hover { color: var(--accent); }
-  .nav-cta {
-    background: var(--accent);
-    color: #0b0e14 !important;
-    padding: 10px 24px;
-    border-radius: 4px;
-    font-weight: 700 !important;
-    transition: background .2s !important;
-  }
-  .nav-cta:hover { background: var(--accent2) !important; color: #0b0e14 !important; }
+  .header-menu a:hover { color: var(--accent); background: rgba(232,160,32,0.06); }
 
-  /* HERO SLIDER — компактный, сменяющиеся слайды */
+  .header-cart {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 10px 16px;
+    border-radius: 100px;
+    background: rgba(232,160,32,0.1);
+    border: 1px solid var(--border);
+    transition: background .2s, border-color .2s;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .header-cart:hover { background: rgba(232,160,32,0.18); border-color: var(--accent); }
+  .header-cart svg { width: 17px; height: 17px; color: var(--accent); }
+  .header-cart-count {
+    background: var(--accent);
+    color: #0b0e14;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 4px;
+  }
+
+  /* Высота шапки для отступа контента под fixed-header */
+  .header-spacer { height: 116px; }
+
+  /* HERO SLIDER — широкий, кликабельный целиком, без кнопок */
   .hero-slider {
-    margin-top: 80px;
+    margin-top: 0;
     position: relative;
     overflow: hidden;
   }
-  .hero-slides { position: relative; height: 340px; }
+  .hero-slides { position: relative; height: 420px; }
   .hero-slide {
     position: absolute; inset: 0;
     display: flex; align-items: center;
@@ -77,8 +180,12 @@
     opacity: 0; visibility: hidden;
     transform: translateX(30px);
     transition: opacity .6s ease, transform .6s ease, visibility .6s;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
   }
   .hero-slide.active { opacity: 1; visibility: visible; transform: translateX(0); }
+  .hero-slide:hover .hero-slide-img { transform: scale(1.02); }
   .hero-slide-bg {
     position: absolute; inset: 0; z-index: 0;
   }
@@ -100,13 +207,9 @@
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform .5s ease;
   }
   .hero-slide.image-slide { padding: 0; }
-  .hero-slide-img-btns {
-    position: absolute; z-index: 2;
-    left: 60px; bottom: 56px;
-    display: flex; gap: 14px; flex-wrap: wrap;
-  }
   .hero-slide-content { position: relative; z-index: 1; max-width: 640px; }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
@@ -135,17 +238,46 @@
     color: var(--muted);
     line-height: 1.6;
     max-width: 460px;
-    margin-bottom: 24px;
   }
-  .hero-slide-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* Точки слайдера */
+  .hero-dots {
+    position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 2;
+    display: flex; gap: 8px;
+  }
+  .hero-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(240,242,247,0.35);
+    border: none; cursor: pointer; padding: 0;
+    transition: background .25s, transform .25s, width .25s;
+  }
+  .hero-dot.active { background: var(--accent); width: 22px; border-radius: 4px; }
+
+  /* Стрелки слайдера */
+  .hero-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(11,14,20,0.5);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, border-color .2s;
+  }
+  .hero-arrow:hover { background: var(--accent); border-color: var(--accent); color: #0b0e14; }
+  .hero-arrow.prev { left: 20px; }
+  .hero-arrow.next { right: 20px; }
+  .hero-arrow svg { width: 18px; height: 18px; }
+
+  /* Кнопки (используются в разделах "Маркировка", "Контакты" и т.д.) */
   .btn-primary {
     background: var(--accent);
     color: #0b0e14;
     border: none;
-    padding: 14px 30px;
+    padding: 16px 36px;
     font-family: 'Geologica', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: 1px;
     cursor: pointer;
     border-radius: 4px;
@@ -158,10 +290,10 @@
     background: transparent;
     color: var(--text);
     border: 1px solid rgba(240,242,247,0.3);
-    padding: 14px 30px;
+    padding: 16px 36px;
     font-family: 'Geologica', sans-serif;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: 1px;
     cursor: pointer;
     border-radius: 4px;
@@ -171,50 +303,15 @@
   }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Точки слайдера */
-  .hero-dots {
-    position: absolute; bottom: 18px; left: 60px; z-index: 2;
-    display: flex; gap: 8px;
-  }
-  .hero-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: rgba(240,242,247,0.25);
-    border: none; cursor: pointer; padding: 0;
-    transition: background .25s, transform .25s, width .25s;
-  }
-  .hero-dot.active { background: var(--accent); width: 22px; border-radius: 4px; }
-
-  /* Стрелки слайдера */
-  .hero-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
-    width: 38px; height: 38px; border-radius: 50%;
-    background: rgba(11,14,20,0.5);
-    border: 1px solid var(--border);
-    color: var(--text);
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: background .2s, border-color .2s;
-  }
-  .hero-arrow:hover { background: var(--accent); border-color: var(--accent); color: #0b0e14; }
-  .hero-arrow.prev { left: 16px; }
-  .hero-arrow.next { right: 16px; }
-  .hero-arrow svg { width: 16px; height: 16px; }
-
-  /* Мини-статы под слайдером */
-  .hero-stats-bar {
-    display: flex; gap: 48px;
-    padding: 28px 60px;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .stat-num {
+  /* Лого для футера */
+  .logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
+    font-size: 24px;
+    letter-spacing: 3px;
     color: var(--accent);
-    line-height: 1;
+    text-decoration: none;
   }
-  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .logo span { color: var(--text); }
 
   /* SECTION BASE */
   section { padding: 100px 60px; }
@@ -618,16 +715,34 @@
   /* RESPONSIVE */
   @media (max-width: 1200px) {
     .catalog-grid { grid-template-columns: repeat(3, 1fr); }
+    .header-contacts { gap: 14px; }
+    .header-contact-item { font-size: 11.5px; }
+  }
+  @media (max-width: 1100px) {
+    .header-contacts .header-contact-item:nth-child(1) { display: none; } /* часы работы скрываем первыми */
+    .header-menu { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+    .header-menu::-webkit-scrollbar { display: none; }
   }
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    nav ul { display: none; }
     section { padding: 72px 24px; }
-    .hero-slider { margin-top: 64px; }
-    .hero-slides { height: 420px; }
+
+    /* Шапка адаптация */
+    .header-top { padding: 10px 20px; flex-wrap: wrap; gap: 12px; }
+    .header-brand img { height: 30px; }
+    .header-brand-name { font-size: 19px; }
+    .header-search { order: 3; max-width: 100%; flex: 1 1 100%; }
+    .header-contacts { order: 2; gap: 16px; }
+    .header-contacts .header-contact-item:nth-child(1),
+    .header-contacts .header-contact-item:nth-child(4) { display: none; }
+    .header-bottom { padding: 0 20px; }
+    .header-menu a { padding: 12px 12px; font-size: 12px; }
+    .header-cart span:not(.header-cart-count) { display: none; }
+    .header-cart { padding: 10px; }
+    .header-spacer { height: 168px; }
+
+    .hero-slides { height: 380px; }
     .hero-slide { padding: 0 24px; }
-    .hero-dots { left: 24px; }
-    .hero-stats-bar { padding: 24px 24px; gap: 28px; flex-wrap: wrap; }
+    .hero-dots { left: 50%; }
     .advantages-inner, .branding-inner, .contacts-inner { grid-template-columns: 1fr; gap: 48px; }
     .forms-grid { grid-template-columns: 1fr; }
     footer { padding: 32px 24px; flex-direction: column; text-align: center; }
@@ -635,92 +750,121 @@
   }
   @media (max-width: 560px) {
     .catalog-grid { grid-template-columns: 1fr; }
-    .hero-slides { height: 460px; }
+    .hero-slides { height: 320px; }
     .hero-arrow { display: none !important; }
+    .header-contacts .header-contact-item:nth-child(2) { display: none; }
+    .header-spacer { height: 156px; }
   }
 </style>
+
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="logo">ИПК<span>АЛЬФА</span></a>
-  <ul>
-    <li><a href="#products">Продукция</a></li>
-    <li><a href="#advantages">О нас</a></li>
-    <li><a href="#branding">Маркировка</a></li>
-    <li><a href="#contacts">Контакты</a></li>
-    <li><a href="#forms" class="nav-cta">Заказать</a></li>
-  </ul>
-</nav>
+<!-- ШАПКА САЙТА -->
+<header class="site-header">
+
+  <!-- Верхняя полоса: логотип, поиск, контакты -->
+  <div class="header-top">
+    <a href="index.html" class="header-brand">
+      <img src="img/logo.png" alt="ИПК АЛЬФА">
+      <span class="header-brand-name">ИПК<span>АЛЬФА</span></span>
+    </a>
+
+    <form class="header-search" onsubmit="return false;">
+      <input type="text" placeholder="Найти товар: пломба, ЗПУ, пломбиратор...">
+      <button type="submit" aria-label="Поиск">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+    </form>
+
+    <div class="header-contacts">
+      <div class="header-contact-item">
+        <span class="hci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+        <span class="hci-text">
+          <span class="hci-text-main">Пн–Пт 10:00–18:00</span>
+        </span>
+      </div>
+      <div class="header-contact-item">
+        <span class="hci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <span class="hci-text">
+          <a href="tel:+79154445070" class="hci-text-main">+7 (915) 444-50-70</a>
+        </span>
+      </div>
+      <div class="header-contact-item">
+        <span class="hci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg></span>
+        <span class="hci-text">
+          <a href="mailto:info@ipkalfa.ru" class="hci-text-main">info@ipkalfa.ru</a>
+        </span>
+      </div>
+      <div class="header-contact-item">
+        <span class="hci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <span class="hci-text">
+          <span class="hci-text-main">Москва, Семёновский Вал, 6г</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Нижняя полоса: меню + корзина -->
+  <div class="header-bottom">
+    <ul class="header-menu">
+      <li><a href="https://www.gravirovshik.ru/catalog/" target="_blank">Каталог</a></li>
+      <li><a href="https://www.gravirovshik.ru/sale/" target="_blank">Акции</a></li>
+      <li><a href="https://www.gravirovshik.ru/payment/" target="_blank">Оплата</a></li>
+      <li><a href="https://www.gravirovshik.ru/delivery/" target="_blank">Доставка</a></li>
+      <li><a href="https://www.gravirovshik.ru/howtobuy/" target="_blank">Как купить?</a></li>
+      <li><a href="https://www.gravirovshik.ru/guarantee/" target="_blank">Гарантия</a></li>
+      <li><a href="https://www.gravirovshik.ru/about/" target="_blank">О компании</a></li>
+      <li><a href="https://www.gravirovshik.ru/contacts/" target="_blank">Контакты</a></li>
+    </ul>
+    <a href="#" class="header-cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span>Корзина</span>
+      <span class="header-cart-count">0</span>
+    </a>
+  </div>
+</header>
+<div class="header-spacer"></div>
 
 <!-- HERO SLIDER -->
 <div class="hero-slider">
   <div class="hero-slides" id="hero-slides">
 
-    <!-- СЛАЙД 1 — Собственное производство -->
-    <div class="hero-slide image-slide active">
+    <!-- СЛАЙД 1 — Собственное производство. Весь слайд — ссылка (тег <a>) -->
+    <a href="#advantages" class="hero-slide image-slide active">
       <img class="hero-slide-img" src="img/slide-proizvodstvo.png" alt="Собственное производство">
-      <div class="hero-slide-img-btns">
-        <a href="#advantages" class="btn-primary">О компании</a>
-        <a href="#products" class="btn-outline">Смотреть каталог</a>
-      </div>
-    </div>
+    </a>
     <!-- Конец слайда 1 -->
 
     <!-- СЛАЙД 2 — Универсальные пломбы -->
-    <div class="hero-slide image-slide">
+    <a href="category-universal.html" class="hero-slide image-slide">
       <img class="hero-slide-img" src="img/slide-universal.png" alt="Универсальные пластиковые пломбы">
-      <div class="hero-slide-img-btns">
-        <a href="category-universal.html" class="btn-primary">Перейти в раздел</a>
-        <a href="#forms" class="btn-outline">Оставить заявку</a>
-      </div>
-    </div>
+    </a>
     <!-- Конец слайда 2 -->
 
-    <!-- СЛАЙД 3 — образец текстового слайда. Скопируйте этот блок div.hero-slide, чтобы добавить новые слайды -->
-    <div class="hero-slide">
+    <!-- СЛАЙД 3 — образец текстового слайда. Скопируйте этот блок (тег <a>), чтобы добавить новые слайды -->
+    <a href="#products" class="hero-slide">
       <div class="hero-slide-bg"></div>
       <div class="hero-slide-content">
         <div class="hero-badge">Производство с 2003 года</div>
         <h1>НАДЁЖНЫЕ <span class="accent">ПЛОМБЫ</span> ОТ ПРОИЗВОДИТЕЛЯ</h1>
         <p class="hero-slide-desc">Пластиковые номерные пломбы, ЗПУ, сейф-пакеты и пломбираторы. Работаем с юридическими и физическими лицами по всей России и СНГ.</p>
-        <div class="hero-slide-btns">
-          <a href="#forms" class="btn-primary">Оставить заявку</a>
-          <a href="#products" class="btn-outline">Смотреть каталог</a>
-        </div>
       </div>
-    </div>
+    </a>
     <!-- Конец слайда 3 -->
 
   </div>
 
   <!-- Стрелки переключения (показываются автоматически при 2+ слайдах) -->
-  <button class="hero-arrow prev" onclick="heroPrev()" style="display:none;">
+  <button class="hero-arrow prev" onclick="heroPrev(event)" style="display:none;">
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
   </button>
-  <button class="hero-arrow next" onclick="heroNext()" style="display:none;">
+  <button class="hero-arrow next" onclick="heroNext(event)" style="display:none;">
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
   </button>
 
   <!-- Точки переключения -->
   <div class="hero-dots" id="hero-dots"></div>
-</div>
-
-<!-- МИНИ-СТАТИСТИКА -->
-<div class="hero-stats-bar">
-  <div>
-    <div class="stat-num">20+</div>
-    <div class="stat-label">лет на рынке</div>
-  </div>
-  <div>
-    <div class="stat-num">8</div>
-    <div class="stat-label">категорий товаров</div>
-  </div>
-  <div>
-    <div class="stat-num">1000+</div>
-    <div class="stat-label">довольных клиентов</div>
-  </div>
 </div>
 
 <!-- PRODUCTS / CATALOG -->
@@ -1130,7 +1274,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="logo">ИПК<span>АЛЬФА</span></a>
+  <a href="index.html" class="logo">ИПК<span>АЛЬФА</span></a>
   <p>© 2003–2026 ООО «ИПК АЛЬФА». Все права защищены.</p>
   <div class="footer-links">
     <a href="http://ipkalfa.ru" target="_blank">Перейти в магазин</a>
@@ -1152,8 +1296,9 @@
     // Создаём точки под количество слайдов
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
+      dot.type = 'button';
       dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
-      dot.onclick = () => goToSlide(i);
+      dot.onclick = (e) => { e.preventDefault(); e.stopPropagation(); goToSlide(i); };
       dotsWrap.appendChild(dot);
     });
 
@@ -1172,8 +1317,8 @@
       resetTimer();
     }
 
-    function next() { goToSlide(current + 1); }
-    function prev() { goToSlide(current - 1); }
+    function next(e) { if (e) { e.preventDefault(); e.stopPropagation(); } goToSlide(current + 1); }
+    function prev(e) { if (e) { e.preventDefault(); e.stopPropagation(); } goToSlide(current - 1); }
 
     window.heroNext = next;
     window.heroPrev = prev;
