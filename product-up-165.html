@@ -20,27 +20,194 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: 'Geologica', sans-serif; font-weight: 300; overflow-x: hidden; }
-
-  /* NAV */
-  nav {
+  /* ===== ВЕРХНЯЯ ШАПКА (двухуровневая) — общая для всех страниц ===== */
+  .site-header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  }
+
+  /* --- Верхняя полоса: логотип, контакты, поиск --- */
+  .header-top {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 60px;
-    background: rgba(11,14,20,0.92);
+    gap: 24px;
+    padding: 12px 60px;
+    background: rgba(11,14,20,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--accent); text-decoration: none; }
+  .header-brand {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .header-brand img {
+    height: 38px; width: auto; display: block;
+  }
+  .header-brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .header-brand-name span { color: var(--text); }
+
+  /* Поиск */
+  .header-search {
+    flex: 1; max-width: 480px;
+    position: relative;
+  }
+  .header-search input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid rgba(240,242,247,0.12);
+    border-radius: 100px;
+    padding: 10px 44px 10px 18px;
+    color: var(--text);
+    font-family: 'Geologica', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .header-search input::placeholder { color: var(--muted); }
+  .header-search input:focus { border-color: var(--accent); }
+  .header-search button {
+    position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: #0b0e14;
+    transition: background .2s;
+  }
+  .header-search button:hover { background: var(--accent2); }
+  .header-search svg { width: 15px; height: 15px; }
+
+  /* Контактный блок справа */
+  .header-contacts {
+    display: flex; align-items: center; gap: 22px;
+    flex-shrink: 0;
+  }
+  .header-contact-item {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12.5px;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+  .header-contact-item .hci-icon {
+    width: 16px; height: 16px; flex-shrink: 0;
+    color: var(--accent);
+  }
+  .header-contact-item .hci-icon svg { width: 100%; height: 100%; }
+  .header-contact-item a, .header-contact-item .hci-text a {
+    color: var(--text); text-decoration: none; transition: color .2s;
+  }
+  .header-contact-item:hover .hci-text-main { color: var(--accent); }
+  .hci-text-main { color: var(--text); display: block; }
+  .hci-text-sub { color: var(--muted); font-size: 11px; }
+
+  /* --- Нижняя полоса: меню + корзина --- */
+  .header-bottom {
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    padding: 0 60px;
+    background: rgba(19,23,31,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-menu {
+    grid-column: 2;
+    list-style: none; display: flex; gap: 6px;
+    justify-self: center;
+  }
+  .header-menu a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    padding: 17px 18px;
+    transition: color .2s, background .2s;
+    white-space: nowrap;
+  }
+  .header-menu a:hover { color: var(--accent2); background: rgba(232,160,32,0.1); }
+  .header-cart { justify-self: end; }
+
+  .header-cart {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 10px 16px;
+    border-radius: 100px;
+    background: rgba(232,160,32,0.1);
+    border: 1px solid var(--border);
+    transition: background .2s, border-color .2s;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .header-cart:hover { background: rgba(232,160,32,0.18); border-color: var(--accent); }
+  .header-cart svg { width: 17px; height: 17px; color: var(--accent); }
+  .header-cart-count {
+    background: var(--accent);
+    color: #0b0e14;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 4px;
+  }
+
+  /* Высота шапки для отступа контента под fixed-header */
+  .header-spacer { height: 116px; }
+
+  /* Лого для футера */
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-decoration: none;
+  }
   .logo span { color: var(--text); }
-  nav ul { list-style: none; display: flex; gap: 36px; }
-  nav ul a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; }
-  nav ul a:hover { color: var(--accent); }
-  .nav-cta { background: var(--accent); color: #0b0e14 !important; padding: 10px 24px; border-radius: 4px; font-weight: 700 !important; }
-  .nav-cta:hover { background: var(--accent2) !important; }
+
+  /* ===== Адаптив шапки ===== */
+  @media (max-width: 1200px) {
+    .header-contacts { gap: 14px; }
+    .header-contact-item { font-size: 11.5px; }
+  }
+  @media (max-width: 1100px) {
+    .header-contacts .header-contact-item:nth-child(1) { display: none; }
+    .header-bottom { display: flex; justify-content: space-between; }
+    .header-menu { justify-self: unset; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+    .header-menu::-webkit-scrollbar { display: none; }
+  }
+  @media (max-width: 900px) {
+    .header-top { padding: 10px 20px; flex-wrap: wrap; gap: 12px; }
+    .header-brand img { height: 30px; }
+    .header-brand-name { font-size: 19px; }
+    .header-search { order: 3; max-width: 100%; flex: 1 1 100%; }
+    .header-contacts { order: 2; gap: 16px; }
+    .header-contacts .header-contact-item:nth-child(1),
+    .header-contacts .header-contact-item:nth-child(4) { display: none; }
+    .header-bottom { padding: 0 20px; }
+    .header-menu a { padding: 13px 13px; font-size: 13px; }
+    .header-cart span:not(.header-cart-count) { display: none; }
+    .header-cart { padding: 10px; }
+    .header-spacer { height: 168px; }
+  }
+  @media (max-width: 560px) {
+    .header-contacts .header-contact-item:nth-child(2) { display: none; }
+    .header-spacer { height: 156px; }
+  }
+
 
   /* BREADCRUMB */
   .breadcrumb-bar {
-    margin-top: 80px;
+    margin-top: 0;
     padding: 16px 60px;
     background: var(--surface);
     border-bottom: 1px solid var(--border2);
@@ -484,8 +651,6 @@
     .related-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    nav ul { display: none; }
     .breadcrumb-bar { padding: 14px 24px; }
     .product-sections { padding: 0 24px 60px; }
     .related { padding: 60px 24px; }
@@ -502,16 +667,71 @@
 <body>
 
 <!-- NAV -->
-<nav>
-  <a href="index.html" class="logo">ИПК<span>АЛЬФА</span></a>
-  <ul>
-    <li><a href="index.html#products">Каталог</a></li>
-    <li><a href="index.html#advantages">О нас</a></li>
-    <li><a href="index.html#branding">Маркировка</a></li>
-    <li><a href="index.html#contacts">Контакты</a></li>
-    <li><a href="index.html#forms" class="nav-cta">Заказать</a></li>
-  </ul>
-</nav>
+<!-- ШАПКА САЙТА -->
+<header class="site-header">
+
+  <!-- Верхняя полоса: логотип, поиск, контакты -->
+  <div class="header-top">
+    <a href="index.html" class="header-brand">
+      <img src="img/logo.png" alt="ИПК АЛЬФА">
+      <span class="header-brand-name">ИПК<span>АЛЬФА</span></span>
+    </a>
+
+    <form class="header-search" onsubmit="return false;">
+      <input type="text" placeholder="Найти товар: пломба, ЗПУ, пломбиратор...">
+      <button type="submit" aria-label="Поиск">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+    </form>
+
+    <div class="header-contacts">
+      <div class="header-contact-item">
+        <span class="hci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+        <span class="hci-text">
+          <span class="hci-text-main">Пн–Пт 10:00–18:00</span>
+        </span>
+      </div>
+      <div class="header-contact-item">
+        <span class="hci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <span class="hci-text">
+          <a href="tel:+79154445070" class="hci-text-main">+7 (915) 444-50-70</a>
+        </span>
+      </div>
+      <div class="header-contact-item">
+        <span class="hci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg></span>
+        <span class="hci-text">
+          <a href="mailto:info@ipkalfa.ru" class="hci-text-main">info@ipkalfa.ru</a>
+        </span>
+      </div>
+      <div class="header-contact-item">
+        <span class="hci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <span class="hci-text">
+          <span class="hci-text-main">Москва, Семёновский Вал, 6г</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Нижняя полоса: меню + корзина -->
+  <div class="header-bottom">
+    <ul class="header-menu">
+      <li><a href="catalog.html">Каталог</a></li>
+      <li><a href="sale.html">Акции</a></li>
+      <li><a href="payment.html">Оплата</a></li>
+      <li><a href="delivery.html">Доставка</a></li>
+      <li><a href="howtobuy.html">Как купить?</a></li>
+      <li><a href="guarantee.html">Гарантия</a></li>
+      <li><a href="about.html">О компании</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+    </ul>
+    <a href="#" class="header-cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span>Корзина</span>
+      <span class="header-cart-count">0</span>
+    </a>
+  </div>
+</header>
+<div class="header-spacer"></div>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb-bar">
