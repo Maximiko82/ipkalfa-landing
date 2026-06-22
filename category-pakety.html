@@ -47,14 +47,6 @@
   .header-brand img {
     height: 38px; width: auto; display: block;
   }
-  .header-brand-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    letter-spacing: 3px;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .header-brand-name span { color: var(--text); }
 
   /* Поиск */
   .header-search {
@@ -193,7 +185,6 @@
   @media (max-width: 900px) {
     .header-top { padding: 10px 20px; flex-wrap: wrap; gap: 12px; }
     .header-brand img { height: 30px; }
-    .header-brand-name { font-size: 19px; }
     .header-search { order: 3; max-width: 100%; flex: 1 1 100%; }
     .header-contacts { order: 2; gap: 16px; }
     .header-contacts .header-contact-item:nth-child(1),
@@ -527,8 +518,7 @@
   <!-- Верхняя полоса: логотип, поиск, контакты -->
   <div class="header-top">
     <a href="index.html" class="header-brand">
-      <img src="img/logo.png" alt="ИПК АЛЬФА">
-      <span class="header-brand-name">ИПК<span>АЛЬФА</span></span>
+      <img src="img/logo.png" alt="ИПК АЛЬФА"></span>
     </a>
 
     <form class="header-search" onsubmit="return false;">
